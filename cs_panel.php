@@ -28,27 +28,27 @@ $num = dbcount("(id)", DB_SERVER);
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 if ($num > 0) { 
     openside($locale['csp_100']);
-        echo "<div align='center'><table border ='1' align='center'><tr>\n";
-        echo "<td height=23 style=background-image:url(img/bar.png) align=center>\n<b>".$locale['csp_101']."</b></td>\n";
-        echo "<td height=23 style=background-image:url(img/bar.png) align=center>\n<b>".$locale['csp_102']."</b></td>\n";
-        echo "<td height=23 style=background-image:url(img/bar.png) align=center>\n<b>".$locale['csp_103']."</b></td>\n";
-        echo "<td height=23 style=background-image:url(img/bar.png) align=center>\n<b>".$locale['csp_104']."</b></td>\n";
-        echo "<td height=23 style=background-image:url(img/bar.png) align=center>\n<b>".$locale['csp_105']."</b></td>\n";
-        echo "<td height=23 style=background-image:url(img/bar.png) align=center>\n<b>".$locale['csp_106']."</b></td>\n";
-        echo "<td height=23 style=background-image:url(img/bar.png) align=center>\n<b>".$locale['csp_107']."</b></td>\n";
+        echo "<div align='center'><table class='tbl-border' align='center'><tr>\n";
+        echo "<th height=23 class='tbl2'>\n<b>".$locale['csp_101']."</b></td>\n";
+        echo "<th height=23 class='tbl2'>\n<b>".$locale['csp_102']."</b></td>\n";
+        echo "<th height=23 class='tbl2'>\n<b>".$locale['csp_103']."</b></td>\n";
+        echo "<th height=23 class='tbl2'>\n<b>".$locale['csp_104']."</b></td>\n";
+        echo "<th height=23 class='tbl2'>\n<b>".$locale['csp_105']."</b></td>\n";
+        echo "<th height=23 class='tbl2'>\n<b>".$locale['csp_106']."</b></td>\n";
+        echo "<th height=23 class='tbl2'>\n<b>".$locale['csp_107']."</b></td>\n";
         echo "</tr>\n";
     $result = dbquery("SELECT * FROM ".DB_SERVER." ORDER BY id desc  LIMIT ".$_GET['rowstart'].",".$page); 
     $i = 1; 
     while ($data=dbarray($result)) {
 
-        echo "<tr align=center>\n<td  height=23>\n".($i+$_GET['rowstart'])."</td>\n"; 
-        echo "<td  height=23>\n<a href='#' onclick=window.open('".INFUSIONS."cs_panel/stats.php?ip=".$data['ip']."&port=".$data['port']. "','','scrollbars=yes,width=600,height=600')>\n";
+        echo "<tr align=center align=center>\n<td  height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."'>\n".($i+$_GET['rowstart'])."</td>\n"; 
+        echo "<td  height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."'>\n<a href='#' onclick=window.open('".INFUSIONS."cs_panel/stats.php?ip=".$data['ip']."&port=".$data['port']. "','','scrollbars=yes,width=600,height=600')>\n";
         echo "<img src='".INFUSIONS."cs_panel/img/verifica.gif' alt=''/></a>\n</td>\n";
-        echo "<td width=135 height=23>\n".$data['ip']."</td>\n";
-        echo "<td height=23 width=45>\n".$data['port']."</td>\n";
-        echo "<td height=23 width=45>\n".$data['player']."</td>\n";
-        echo "<td height=23 width=75>\n".$cod[$data['cod']]."</td>\n";
-		echo "<td height=23 width=45>\n".$modul[$data['modul']]."</td>\n";
+        echo "<td width=135 class='tbl".($i % 2 == 0 ? 2 : 1)."' height=23>\n".$data['ip']."</td>\n";
+        echo "<td height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."' width=45>\n".$data['port']."</td>\n";
+        echo "<td height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."' width=45>\n".$data['player']."</td>\n";
+        echo "<td height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."' width=75>\n".$cod[$data['cod']]."</td>\n";
+		echo "<td height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."' width=45>\n".$modul[$data['modul']]."</td>\n";
         echo "</tr>\n";
 		$i++;
 	}
