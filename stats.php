@@ -66,6 +66,17 @@ body, td {
 echo "</head><body link='red' vlink='red'>";
 
 }
+function gameTime($time, $units) {
+    if ($time >= 86400) {
+        return intval($time / 86400) . $units['days'] . gameTime($time % 86400, $units);
+    } elseif ($time >= 3600) {
+        return intval($time / 3600) . $units['hours'] . gameTime($time % 3600, $units);
+    } elseif ($time >= 60) {
+        return intval($time / 60) . $units['minutes'] . gameTime($time % 60, $units);
+    } else {
+        return intval($time) . $units['seconds'];
+    }
+}
 $servers = array(
 	'server' => array('cs', $server_ip, $server_port)
 );
@@ -158,11 +169,10 @@ if (!$server['gq_online']) {
     $ii=0;
     foreach( $server['players'] as $player ) {
 						echo "<tr>\n";
-						echo "<td align='center'>".($ii+1)."</td>";
+						echo "<td align='center'>".($ii++)."</td>";
 						echo "<td align='center'>".htmlspecialchars($player['gq_name'])."</td>";
 						echo "<td align='center'>".$player['gq_score']."</td>";
-						echo "<td align='center'>".$player['time']."</td>";
-$ii++;
+						echo "<td align='center'>".gameTime($player['time'], $locale['csp_timeUnits'])."</td>";
 }    
 		echo "</table>\n";
         echo "</td>\n</tr>\n</table>\n";
