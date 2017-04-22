@@ -166,7 +166,7 @@ if (!$server['gq_online']) {
            echo "<td class='margins' align=center>\n<span class='style1'><strong><font face='Tahoma'>".$locale['csp_132']."</font></strong></span></td>\n";
            echo "</tr>\n";
 
-    $ii=0;
+    $ii=1;
     foreach( $server['players'] as $player ) {
 						echo "<tr>\n";
 						echo "<td align='center'>".($ii++)."</td>";
