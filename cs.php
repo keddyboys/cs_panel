@@ -42,16 +42,16 @@ openside($locale['csp_100']);
         
         $i = 1;
     while ($data=dbarray($result)) {
-            
-            echo "<tr align=center><td height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."'>".($i+$_GET['rowstart'])."</td>\n";
-			echo "<td  height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."'>\n";
+            $tbl = "tbl".($i % 2 == 0 ? 2 : 1);
+            echo "<tr align=center><td height=23 class='$tbl'>".($i+$_GET['rowstart'])."</td>\n";
+			echo "<td  height=23 class='$tbl'>\n";
             echo "<a href='#' onclick=window.open('".INFUSIONS."cs_panel/stats.php?id=".$data['id']."','Download','scrollbars=yes,width=600,height=600')>\n";
             echo "<img src='".INFUSIONS."cs_panel/img/verifica.gif' alt=''/></center></a></td>\n";
-            echo "<td width=135 height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."'>".$data['ip']."</td>\n";
-            echo "<td height=23 width=45 class='tbl".($i % 2 == 0 ? 2 : 1)."'>".$data['port']."</td>\n";
-            echo "<td height=23 width=45 class='tbl".($i % 2 == 0 ? 2 : 1)."'>".$data['player']."</td>\n";
-            echo "<td height=23 width=75 class='tbl".($i % 2 == 0 ? 2 : 1)."'>".$cod[$data['cod']]."</td>\n";
-            echo "<td height=23 width=45 class='tbl".($i % 2 == 0 ? 2 : 1)."'>".$modul[$data['modul']]."</td>\n";
+            echo "<td width=135 height=23 class='$tbl'>".$data['ip']."</td>\n";
+            echo "<td height=23 width=45 class='$tbl'>".$data['port']."</td>\n";
+            echo "<td height=23 width=45 class='$tbl'>".$data['player']."</td>\n";
+            echo "<td height=23 width=75 class='$tbl'>".$cod[$data['cod']]."</td>\n";
+            echo "<td height=23 width=45 class='$tbl'>".$modul[$data['modul']]."</td>\n";
             echo"</tr>\n";
 			$i++;     
     }
