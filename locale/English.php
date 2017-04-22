@@ -53,7 +53,12 @@ $locale['csp_153'] = "Delete selected servers";
 $locale['csp_154'] = "Are you sure?";
 $locale['csp_155'] = "Save";
 
-
+$locale['csp_timeUnits'] = array(
+    'days' => 'd',
+    'hours' => 'h',
+    'minutes' => 'm',
+    'seconds' => 's'
+);
 
 
 
