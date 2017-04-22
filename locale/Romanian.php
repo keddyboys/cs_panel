@@ -45,6 +45,14 @@ $locale['csp_137'] = "Linux";
 $locale['csp_138'] = "Dedicat";
 $locale['csp_139'] = "Privat";
 $locale['csp_140'] = "Server picat";
+
+$locale['csp_timeUnits'] = array(
+    'days' => 'z',
+    'hours' => 'o',
+    'minutes' => 'm',
+    'seconds' => 's'
+);
+
 $cod = array(1 => "Not Secure", 2 => "VAC Secure", 3 => "VAC Secure2", 4 => "HLGuard", 5 => "Cheating-Death", 6 => "Other" );
 $net = array(1 => "Other", 2 => "Decknet", 3 => "Euroweb", 4 => "Fibernet", 5 => "Allnet", 6 => "Idilis", 7 => "iNES Group", 8 => "Infogate", 9 => "Mediasat", 10 => "RDS", 11 => "Romtelecom" );
 $modul = array(1 => "Normal", 2 => "Respawn", 3 => "WAR3FT", 4 => "Heroes", 5 => "Other" );
