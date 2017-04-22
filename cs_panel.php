@@ -40,15 +40,15 @@ if ($num > 0) {
     $result = dbquery("SELECT * FROM ".DB_SERVER." ORDER BY id desc  LIMIT ".$_GET['rowstart'].",".$page); 
     $i = 1; 
     while ($data=dbarray($result)) {
-        $tbl = "tbl".($i % 2 == 0 ? 2 : 1);
-        echo "<tr align=center align=center>\n<td  height=23 class='".$tbl."'>\n".($i+$_GET['rowstart'])."</td>\n"; 
-        echo "<td  height=23 class='".$tbl."'>\n<a href='#' onclick=window.open('".INFUSIONS."cs_panel/stats.php?id=".$data['id']."','','scrollbars=yes,width=600,height=600')>\n";
+	$tbl = "tbl".($i % 2 == 0 ? 2 : 1);
+        echo "<tr align=center align=center>\n<td height=23 class='$tbl'>\n".($i+$_GET['rowstart'])."</td>\n"; 
+        echo "<td height=23 class='$tbl'>\n<a href='#' onclick=window.open('".INFUSIONS."cs_panel/stats.php?id=".$data['id']."','','scrollbars=yes,width=600,height=600')>\n";
         echo "<img src='".INFUSIONS."cs_panel/img/verifica.gif' alt=''/></a>\n</td>\n";
-        echo "<td width=135 class='".$tbl."' height=23>\n".$data['ip']."</td>\n";
-        echo "<td height=23 class='".$tbl."' width=45>\n".$data['port']."</td>\n";
-        echo "<td height=23 class='".$tbl."' width=45>\n".$data['player']."</td>\n";
-        echo "<td height=23 class='".$tbl."' width=75>\n".$cod[$data['cod']]."</td>\n";
-		echo "<td height=23 class='".$tbl."' width=45>\n".$modul[$data['modul']]."</td>\n";
+        echo "<td width=135 class='$tbl' height=23>\n".$data['ip']."</td>\n";
+        echo "<td height=23 class='$tbl' width=45>\n".$data['port']."</td>\n";
+        echo "<td height=23 class='$tbl' width=45>\n".$data['player']."</td>\n";
+        echo "<td height=23 class='$tbl' width=75>\n".$cod[$data['cod']]."</td>\n";
+		echo "<td height=23 class='$tbl' width=45>\n".$modul[$data['modul']]."</td>\n";
         echo "</tr>\n";
 		$i++;
 	}
