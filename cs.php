@@ -30,7 +30,7 @@ $page = 10;
 $num = dbcount("(id)", DB_SERVER);
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 openside($locale['csp_100']);
-            echo "<div align='center'><table border ='1'  class='tbl-border' align='center'>\n<tr>\n";
+            echo "<div align='center'><table class='tbl-border' align='center'>\n<tr>\n";
             echo "<th height=23  class='tbl2'><b>".$locale['csp_101']."</b></td>\n";
             echo "<th height=23 class='tbl2'><b>".$locale['csp_102']."</b></td>\n";
             echo "<th height=23 class='tbl2'><b>".$locale['csp_103']."</b></td>\n";
