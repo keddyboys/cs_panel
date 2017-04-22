@@ -26,7 +26,7 @@ if (file_exists(INFUSIONS."cs_panel/locale/".$settings['locale'].".php")) {
 include INFUSIONS."cs_panel/infusion_db.php";
 
 if (!isset($_GET['rowstart']) || !isNum($_GET['rowstart'])) $_GET['rowstart'] = 0;
-$page = 5;
+$page = 10;
 $num = dbcount("(id)", DB_SERVER);
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 openside($locale['csp_100']);
@@ -45,7 +45,7 @@ openside($locale['csp_100']);
             
             echo "<tr align=center><td height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."'>".($i+$_GET['rowstart'])."</td>\n";
 			echo "<td  height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."'>\n";
-            echo "<a href='#' onclick=window.open('".INFUSIONS."cs_panel/stats.php?ip=".$data['ip']."&port=".$data['port']. "','Download','scrollbars=yes,width=600,height=600')>\n";
+            echo "<a href='#' onclick=window.open('".INFUSIONS."cs_panel/stats.php?id=".$data['id']."','Download','scrollbars=yes,width=600,height=600')>\n";
             echo "<img src='".INFUSIONS."cs_panel/img/verifica.gif' alt=''/></center></a></td>\n";
             echo "<td width=135 height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."'>".$data['ip']."</td>\n";
             echo "<td height=23 width=45 class='tbl".($i % 2 == 0 ? 2 : 1)."'>".$data['port']."</td>\n";

@@ -42,7 +42,7 @@ if ($num > 0) {
     while ($data=dbarray($result)) {
 
         echo "<tr align=center align=center>\n<td  height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."'>\n".($i+$_GET['rowstart'])."</td>\n"; 
-        echo "<td  height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."'>\n<a href='#' onclick=window.open('".INFUSIONS."cs_panel/stats.php?ip=".$data['ip']."&port=".$data['port']. "','','scrollbars=yes,width=600,height=600')>\n";
+        echo "<td  height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."'>\n<a href='#' onclick=window.open('".INFUSIONS."cs_panel/stats.php?id=".$data['id']."','','scrollbars=yes,width=600,height=600')>\n";
         echo "<img src='".INFUSIONS."cs_panel/img/verifica.gif' alt=''/></a>\n</td>\n";
         echo "<td width=135 class='tbl".($i % 2 == 0 ? 2 : 1)."' height=23>\n".$data['ip']."</td>\n";
         echo "<td height=23 class='tbl".($i % 2 == 0 ? 2 : 1)."' width=45>\n".$data['port']."</td>\n";

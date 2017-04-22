@@ -31,8 +31,11 @@ require_once INFUSIONS."cs_panel/includes/GameQ.php";
  
 
 error_reporting(~E_ALL); 
-$server_ip = trim(stripslashes($_GET['ip']));
-$server_port = trim(stripslashes($_GET['port']));
+$id = isset($_GET['id']) && isNum($_GET['id']) ? $_GET['id'] : "0";
+$data = dbarray(dbquery("SELECT ip, port FROM ".DB_SERVER."  WHERE id=".$id));
+
+$server_ip = $data['ip'];
+$server_port = $data['port'];
 
 $page = "full";
 
