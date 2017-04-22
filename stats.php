@@ -192,4 +192,3 @@ if (!$server['gq_online']) {
         echo "<a href='#'onclick='javascript:self.close()'>".$locale['csp_157']."</a></center></font>\n";
 }	
 ?>
-1
