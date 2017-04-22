@@ -33,7 +33,7 @@ require_once INFUSIONS."cs_panel/includes/GameQ.php";
 error_reporting(~E_ALL); 
 $id = isset($_GET['id']) && isNum($_GET['id']) ? $_GET['id'] : "0";
 $data = dbarray(dbquery("SELECT ip, port FROM ".DB_SERVER."  WHERE id=".$id));
-
+if ($data !=0) {
 $server_ip = $data['ip'];
 $server_port = $data['port'];
 
@@ -182,8 +182,14 @@ if (!$server['gq_online']) {
         echo "<br /><center>\n<font color='red' size='2'>Copyright &copy; 2016 <a href='http://dev.kmods.ro' target='_black'>Keddy</a>";
         
 } 
-        echo "<br /><a href='#' onClick='window.location.reload();'>Refresh</a>&nbsp;&nbsp;&nbsp;";
-        echo "<a href='#'onclick='javascript:self.close()'>Inchide</a></center></font>\n";
-        echo "</body></html>";
 
+
+        echo "<br /><a href='#' onClick='window.location.reload();'>".$locale['csp_156']."</a>&nbsp;&nbsp;&nbsp;";
+        echo "<a href='#'onclick='javascript:self.close()'>".$locale['csp_157']."</a>\n";
+        echo "</body></html>";
+} else {
+        echo "<center>".$locale['csp_158'],"<br />\n";
+        echo "<a href='#'onclick='javascript:self.close()'>".$locale['csp_157']."</a></center></font>\n";
+}	
 ?>
+1
