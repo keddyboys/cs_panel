@@ -16,7 +16,13 @@
 | copyright header is strictly prohibited without
 | written permission from the original author(s).
 +--------------------------------------------------------*/
-
+$default_opts = array(
+  'http'=>array(
+    'method'=>"GET",
+    'user_agent'=>'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36'
+  )
+);
+stream_context_set_default($default_opts);
 require_once "../../maincore.php";
 if (file_exists(INFUSIONS."cs_panel/locale/".$settings['locale'].".php")) {
 	include INFUSIONS."cs_panel/locale/".$settings['locale'].".php";
@@ -117,12 +123,17 @@ if (!$server['gq_online']) {
 		    echo "<td class='margins'>\n". $server['hostname']."</td>\n";
 		    echo "<td rowspan='10' align='center'>\n<font align='' face='Tahoma' size='2'>";
 		
-	if (file_exists(INFUSIONS."cs_panel/img/maps/".$server['map'].".jpg")) {
-		    echo "<img src='".INFUSIONS."cs_panel/img/maps/".$server['map'].".jpg' width=200 height=180>";
-	} else { 
-	      
+	//if (file_exists(INFUSIONS."cs_panel/img/maps/".$server['map'].".jpg")) {
+		//    echo "<img src='".INFUSIONS."cs_panel/img/maps/".$server['map'].".jpg' width=200 height=180>";
+	//} else {
+		$fileUrl = "https://image.gametracker.com/images/maps/160x120/cs/".$server['map'].".jpg";
+        $AgetHeaders = @get_headers($fileUrl);
+        if (preg_match("|200|", $AgetHeaders[0])) {
+            echo "<img src='https://image.gametracker.com/images/maps/160x120/cs/".$server['map'].".jpg' width=200 height=180>";
+        } else {
+	        var_dump(get_headers("https://image.gametracker.com/images/maps/160x120/cs/de_dust2.jpg"));
 	        echo "<img src=img/no.gif width=200 height=180>"; 
-	}
+	    }
 		    echo "</td>\n</tr>\n<tr>\n";
 		    echo "<td class='margins'>\n<span class='style1'><font face='Tahoma' size='2'>".$locale['csp_121']."</font></span></td>\n";
 		    echo "<td class='margins'>\n".(isNum($server_ip) ? $server_ip : gethostbyname($server_ip))."</td>\n"; 
