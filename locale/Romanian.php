@@ -45,6 +45,16 @@ $locale['csp_137'] = "Linux";
 $locale['csp_138'] = "Dedicat";
 $locale['csp_139'] = "Privat";
 $locale['csp_140'] = "Server picat";
+//cs_panel_admin.php
+$locale['csp_150'] = "Op&#355;iuni";
+$locale['csp_151'] = "Editeaz&#259;";
+$locale['csp_152'] = "&#350;terge";
+$locale['csp_153'] = "&#350;terg serverele selectate";
+$locale['csp_154'] = "E&#351;ti sigur?";
+$locale['csp_155'] = "Salveaz&#259;";
+$locale['csp_156'] = "Re&#226;mprosp&#259;teaz&#259;";
+$locale['csp_157'] = "&#206;nchide";
+$locale['csp_158'] = "Nu exist&#259; servere cu id-ul acesta";
 
 $locale['csp_timeUnits'] = array(
     'days' => 'z',
