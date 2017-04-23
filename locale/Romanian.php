@@ -13,6 +13,8 @@ $locale['csp_105'] = "Juc&#259;tori";
 $locale['csp_106'] = "Anticheat";
 $locale['csp_107'] = "Mod";
 $locale['csp_108'] = "Tip server";
+$locale['csp_109'] = "Set&#259;ri";
+$locale['csp_110'] = "Servere";
 //add_server.php
 $locale['csp_111'] = "Adaug&#259; alt server";
 $locale['csp_112'] = "Pagina principala";
@@ -45,6 +47,10 @@ $locale['csp_137'] = "Linux";
 $locale['csp_138'] = "Dedicat";
 $locale['csp_139'] = "Privat";
 $locale['csp_140'] = "Server picat";
+//settings
+$locale['csp_145'] = "Servere &#226;n panou";
+$locale['csp_146'] = "Servere pe pagin&#259;";
+$locale['csp_147'] = "Arat&#259; juc&#259;tori";
 //cs_panel_admin.php
 $locale['csp_150'] = "Op&#355;iuni";
 $locale['csp_151'] = "Editeaz&#259;";
@@ -55,7 +61,7 @@ $locale['csp_155'] = "Salveaz&#259;";
 $locale['csp_156'] = "Re&#226;mprosp&#259;teaz&#259;";
 $locale['csp_157'] = "&#206;nchide";
 $locale['csp_158'] = "Nu exist&#259; servere cu id-ul acesta";
-
+$locale['csp_159'] = "Conecteaz&#259;-te";
 $locale['csp_timeUnits'] = array(
     'days' => 'z',
     'hours' => 'o',
@@ -65,6 +71,6 @@ $locale['csp_timeUnits'] = array(
 $play = array(20=>"20",10=>"10",12=>"12",14=>"14",16=>"16",18=>"18",22=>"22",24=>"24",26=>"26",28=>"28",30=>"30",32=>"32");
 $code = array(1 => "Not Secure", 2 => "VAC Secure", 3 => "VAC Secure2", 4 => "HLGuard", 5 => "Cheating-Death", 6 => "Other" );
 $mod = array(1 => "Normal", 2 => "Respawn", 3 => "WAR3FT", 4 => "Heroes", 5 => "Other" );
-//$tara = array(1 => "RO", 2 => "FR", 3 => "DE", 4 => "IT", 5 => "ES", 6 => "GB", 7 => "US", 8=>"UE" );
-$typ= array(1 => "CS1.6", 2 => "CS:Source" );
+$typ = array(1 => "CS 1.6", 2 => "CS Source", 3 => "CS 1.5", 4 => "CS Condition Zero", 5 => "CS Global Offensive" );
+$typo = array(1 => "cs16", 2 => "css", 3 => "cs15", 4 => "cscz", 5 => "csgo" );
 ?>

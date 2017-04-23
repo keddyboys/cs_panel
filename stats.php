@@ -33,7 +33,7 @@ include_once INCLUDES."infusions_include.php";
 
 require_once THEMES."templates/header.php";
 
-require_once INFUSIONS."cs_panel/includes/GameQ.php"; 
+require_once INFUSIONS."cs_panel/includes/Game3/Autoloader.php"; 
  
 $cs_settings = get_settings("cs_panel");
 
@@ -43,7 +43,7 @@ $data = dbarray(dbquery("SELECT ip, port, type FROM ".DB_SERVER."  WHERE id=".$i
 if ($data !=0) {
 $server_ip = $data['ip'];
 $server_port = $data['port'];
-$server_type = $data['type'] == 1 ? 'cs' : 'cssource';
+$server_type = $typo[$data['type']];
 
 $page = "full";
 
@@ -62,7 +62,20 @@ function gameTime($time, $units) {
         return intval($time) . $units['seconds'];
     }
 }
-$servers = array(
+$servers = [
+    [
+    'type'    => $server_type,
+    'host'    => $server_ip.':'.$server_port,
+    ]
+];
+//$GameQ = \GameQ\GameQ::factory();
+$GameQ = new \GameQ\GameQ(); // or $GameQ = \GameQ\GameQ::factory();
+$GameQ->addServers($servers);
+$GameQ->setOption('timeout', 5); // seconds
+
+$results = $GameQ->process();
+$server = $results[$server_ip.':'.$server_port];
+/*$servers = array(
 	'server' => array($server_type, $server_ip, $server_port)
 );
 $gq = new GameQ();
@@ -79,8 +92,8 @@ $gq->setFilter('normalise');
 $gq->setFilter('sortplayers');
 
 // Send requests, and parse the data
-$results = $gq->requestData();
-$server= $results['server'];
+$results = $gq->requestData();*/
+
 
         	echo "<table border='0' class='margins' cellspacing='1' cellpadding='0' align='center'>\n";
             echo "<tr><td valign='top'>\n";
