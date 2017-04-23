@@ -4,7 +4,7 @@
 | Copyright (C) PHP-Fusion Inc
 | https://www.php-fusion.co.uk/
 +--------------------------------------------------------+
-| Filename: infusion.php
+| Filename: add_server.php
 | Author: Keddy
 +--------------------------------------------------------+
 | This program is released as free software under the

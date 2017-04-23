@@ -5,8 +5,7 @@
 | https://www.php-fusion.co.uk/
 +--------------------------------------------------------+
 | Filename: stats.php
-| Author: xPaw/
-| Source: https://github.com/xPaw/PHP-Source-Query  
+| Author: Keddy 
 +--------------------------------------------------------+
 | This program is released as free software under the
 | Affero GPL license. You can redistribute it and/or
@@ -114,7 +113,7 @@ $server= $results['server'];
             echo "<table border='0' width='458'>\n<tr>\n";
 	        echo "<td align='center'>\n<font size='3'>".$locale['csp_130']."</font></td>\n</tr>\n";
             echo "</table>";
-	       // $adresa = $server['hostname'];
+	
 if (!$server['gq_online']) {
         	echo "<center>".$locale['csp_140']."</center>";
 } else {
@@ -123,15 +122,11 @@ if (!$server['gq_online']) {
 		    echo "<td class='margins'>\n". $server['hostname']."</td>\n";
 		    echo "<td rowspan='10' align='center'>\n<font align='' face='Tahoma' size='2'>";
 		
-	//if (file_exists(INFUSIONS."cs_panel/img/maps/".$server['map'].".jpg")) {
-		//    echo "<img src='".INFUSIONS."cs_panel/img/maps/".$server['map'].".jpg' width=200 height=180>";
-	//} else {
 		$fileUrl = "https://image.gametracker.com/images/maps/160x120/cs/".$server['map'].".jpg";
         $AgetHeaders = @get_headers($fileUrl);
         if (preg_match("|200|", $AgetHeaders[0])) {
             echo "<img src='https://image.gametracker.com/images/maps/160x120/cs/".$server['map'].".jpg' width=200 height=180>";
         } else {
-	        var_dump(get_headers("https://image.gametracker.com/images/maps/160x120/cs/de_dust2.jpg"));
 	        echo "<img src=img/no.gif width=200 height=180>"; 
 	    }
 		    echo "</td>\n</tr>\n<tr>\n";
