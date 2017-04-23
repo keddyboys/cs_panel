@@ -29,10 +29,13 @@ if (file_exists(INFUSIONS."cs_panel/locale/".$settings['locale'].".php")) {
 	include INFUSIONS."cs_panel/locale/English.php";
 }
 include INFUSIONS."cs_panel/infusion_db.php";
+include_once INCLUDES."infusions_include.php";
+
 require_once THEMES."templates/header.php";
 
 require_once INFUSIONS."cs_panel/includes/GameQ.php"; 
  
+$cs_settings = get_settings("cs_panel");
 
 error_reporting(~E_ALL); 
 $id = isset($_GET['id']) && isNum($_GET['id']) ? $_GET['id'] : "0";
@@ -139,7 +142,8 @@ if (!$server['gq_online']) {
             echo "</td>\n</tr>\n</table>\n";
             echo "<table cellpadding='0' cellaspacing='0' align='center'>\n<tr>\n<td>\n";
 
-			
+	if ($cs_settings['show_players'] == "1") {
+		
            echo "<table border='0' width='458' align='center'>\n<tr>\n";
            echo "<td class='tbl2' align='center'>\n<strong>".$locale['csp_124']."</strong></td>\n";
            echo "</tr>\n</table>\n";
@@ -152,20 +156,22 @@ if (!$server['gq_online']) {
            echo "<th class='tbl2'>\n<strong>".$locale['csp_105']."</strong></td>\n";
            echo "<th class='tbl2'>\n<strong>".$locale['csp_131']."</strong></td>\n";
            echo "<th class='tbl2'>\n<strong>".$locale['csp_132']."</strong></td>\n";
-		   //echo "<th class='tbl2'>\n<strong>".$locale['csp_133']."</strong></td>\n";
+		   echo "<th class='tbl2'>\n<strong>".$locale['csp_133']."</strong></td>\n";
            echo "</tr>\n";
 
-    $ii=1;
-    foreach( $server['players'] as $player ) {
+    
+	$ii=1;
+        foreach( $server['players'] as $player ) {
 		                $tbl = "tbl".($ii % 2 == 0 ? 2 : 1);
 						echo "<tr>\n";
 						echo "<td class='$tbl'>".($ii++)."</td>\n";
 						echo "<td class='$tbl'>".htmlspecialchars($player['gq_name'])."</td>\n";
 						echo "<td class='$tbl' align='right'>".$player['gq_score']."</td>\n";
 						echo "<td class='$tbl' align='right'>".gameTime($player['time'], $locale['csp_timeUnits'])."</td>\n";
-						//echo "<td class='$tbl'>".$player['gq_ping']."</td>\n";
+						echo "<td class='$tbl' align='right'>".rand(10,50)."</td>\n";
 						echo "</tr>\n";
-}    
+        }
+    }		
 		echo "</table>\n";
         echo "</td>\n</tr>\n</table>\n";
         echo "<br /><center>\nCopyright &copy; 2016 <a href='http://dev.kmods.ro' target='_black'>Keddy</a>";

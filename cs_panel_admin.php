@@ -26,10 +26,23 @@ if (file_exists(INFUSIONS."cs_panel/locale/".$settings['locale'].".php")) {
 } else {
 	include INFUSIONS."cs_panel/locale/English.php";
 }
+include INCLUDES."infusions_include.php";
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 if (!isset($_GET['rowstart']) || !isNum($_GET['rowstart'])) $_GET['rowstart'] = 0;
+//if (!isset($_GET['page']) || !$_GET['page']) $_GET['page'] = "";
+$nav = "<table cellpadding='0' cellspacing='0' class='tbl-border' align='center' style='width:300px; margin-bottom:20px; text-align:center;'>\n<tr>\n";
+$nav .= "<td class='".(!isset($_GET['page']) || $_GET['page'] != "settings" ? "tbl2" : "tbl1")."'><a href='".FUSION_SELF.$aidlink."'>".$locale['csp_110']."</a></td>\n";
+$nav .= "<td class='".(isset($_GET['page']) && $_GET['page'] == "settings" ? "tbl2" : "tbl1")."'><a href='".FUSION_SELF.$aidlink."&amp;page=settings'>".$locale['csp_109']."</a></td>\n";
+$nav .= "</tr>\n</table>\n";
+
 $page=10;
 $num = dbcount("(id)", DB_SERVER);
+if (!isset($_GET['page']) || $_GET['page'] != "settings") {
+	
+//        echo "Test";
+
+
+
 if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id']) && isnum($_GET['id']))) {
                 
             $result = dbquery("DELETE FROM ".DB_SERVER." WHERE id='".$_GET['id']."'");
@@ -62,6 +75,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
 		$formaction = FUSION_SELF.$aidlink."&amp;action=edit&amp;id=".$_GET['id'];
 		$open = $locale['csp_114'];
 		openside($open);
+		   // echo $nav;
             echo "<div style='text-align:center'>".$locale['csp_115'] ."&nbsp;".$num."&nbsp;".$locale['csp_116']."</div>\n";
             echo "<table width='100%' cellspacing=1 cellpadding=0 align='center'>\n";
             echo "<tr align=center>\n<td align=center>\n";
@@ -113,8 +127,10 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
 			
 		}	
     }
-  
+    
     openside($locale['csp_113']);
+	       echo $nav;
+		   
 	$result2 = dbquery("SELECT * FROM ".DB_SERVER." ORDER BY `id` ASC  LIMIT ".$_GET['rowstart'].",".$page);		
 	        echo "<table width='400' border='0' cellspacing='1' cellpadding='0' align='center'>\n<tr>\n";
 	        echo "<tr>\n";
@@ -153,6 +169,48 @@ closeside();
         }
 	        redirect(FUSION_SELF.$aidlink);
 	}  
+closeside();
+} else {
+    if (isset($_POST['cs_settings'])) {
+		if (isset($_POST['servers_in_panel']) && isnum($_POST['servers_in_panel'])) {
+			$setting = set_setting("servers_in_panel", $_POST['servers_in_panel'], "cs_panel");
+		}
+		if (isset($_POST['servers_per_page']) && isnum($_POST['servers_per_page'])) {
+			$setting = set_setting("servers_per_page", $_POST['servers_per_page'], "cs_panel");
+		}
+		if (isset($_POST['show_players']) && ($_POST['show_players'] == 1 || $_POST['show_players'] == 0)) {
+			$setting = set_setting("show_players", $_POST['show_players'], "cs_panel");
+		}
+	}	
+	$inf_settings = get_settings("cs_panel");
+	openside($locale['csp_109']);
+	        echo $nav;
+	
+            echo "<table width='100%' cellspacing=1 cellpadding=0 align='center'>\n";
+            echo "<tr align=center>\n<td align=center>\n";
+            
+            echo "<table width='600' border='0' align='center' cellpadding='2' cellspacing='0'>\n";
+            echo "<form  method='post' action='".FUSION_SELF.$aidlink."&amp;page=settings'>\n";
+
+            echo "<tr>\n<td width='42%' align='right'>\n".$locale['csp_145']."</td>\n";
+            echo "<td width='58%'>\n<input class=textbox name='servers_in_panel' type='textbox' size='7' id='servers_in_panel' value='".$inf_settings['servers_in_panel']."'></td>\n";
+            echo "</tr>\n<tr>\n";
+			echo "<tr>\n<td width='42%' align='right'>\n".$locale['csp_146']."</td>\n";
+            echo "<td width='58%'>\n<input class=textbox name='servers_per_page' type='textbox' size='7' id='servers_per_page' value='".$inf_settings['servers_per_page']."'></td>\n";
+            echo "</tr>\n<tr>\n";
+			echo "<td width='42%' align='right'>\n".$locale['csp_147']."</td>\n";
+			echo "<td class='tbl1'><select name='show_players' size='1' class='textbox'>";
+	        echo "<option value='1' ".($inf_settings['show_players'] == 1 ? "selected='selected'" : "").">".$locale['csp_134']."</option>\n";
+	        echo "<option value='0'".($inf_settings['show_players'] == 0 ? "selected='selected'" : "").">".$locale['csp_135']."</option>\n";
+	        echo "</select></td>\n";
+            echo "</tr>\n<tr>\n";
+			echo "<td colspan='2' align='center'>\n<input type='submit' name='cs_settings' value='".$locale['csp_155']."' class='button'></td>\n";
+			echo "</tr>\n</table>\n</form>\n";
+			
+ 	
+	
+    closeside();	
+}
 closeside();
 require_once THEMES."templates/footer.php";
 ?>

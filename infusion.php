@@ -31,7 +31,7 @@ if (file_exists(INFUSIONS."cs_panel/locale/".$settings['locale'].".php")) {
 // Infusion general information
 $inf_title = $locale['csp_title'];
 $inf_description = $locale['csp_desc'];
-$inf_version = "2.1";
+$inf_version = "2.2";
 $inf_developer = "keddy <br /><a href='http://www.phpfusion.ro/'>PHP-Fusion Rom&#226;nia</a>";
 $inf_email = "kmodsro@gmail.com";
 $inf_weburl = "http://dev.kmods.ro";
@@ -46,17 +46,21 @@ port varchar(5) NOT NULL DEFAULT '' ,
 player varchar(2) NOT NULL DEFAULT '' ,
 cod varchar(25) NOT NULL DEFAULT '' ,
 modul varchar(25) NOT NULL DEFAULT '' ,
+type varchar(25) NOT NULL DEFAULT '',
 PRIMARY KEY (ip),
 UNIQUE id (id)
 )ENGINE=MyISAM;";
-$inf_insertdbrow[1] = DB_SERVER."(id, ip, port, player, cod, modul) VALUES(`NULL`, `ip`, `port`, `player`, `cod`, `modul`) ";
+
+$inf_insertdbrow[1] = DB_SERVER."(id, ip, port, player, cod, modul, type) VALUES(`NULL`, `ip`, `port`, `player`, `cod`, `modul`, `type`) ";
 $inf_insertdbrow[2] = DB_PANELS." (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES('".$locale['csp_title']."', 'cs_panel', '', '2', '3', 'file', '0', '0', '0')";
 
-$inf_droptable[1] = DB_SERVER;
-$inf_deldbrow[1] = DB_PANELS." WHERE panel_filename='".$inf_folder."'";
-//$inf_altertable[1] = DB_SERVER." ADD etc";
+$inf_insertdbrow[3] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('servers_per_page', '10', '".$inf_folder."')";
+$inf_insertdbrow[4] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('servers_in_panel', '10', '".$inf_folder."')";
+$inf_insertdbrow[5] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('show_players', '1', '".$inf_folder."')";
 
-///$inf_deldbrow[1] = "other_table";
+$inf_droptable[1] = DB_SERVER;
+
+$inf_deldbrow[1] = DB_PANELS." WHERE panel_filename='".$inf_folder."'";
 
 $inf_adminpanel[1] = array(
 	"title" => $locale['csp_admin1'],
