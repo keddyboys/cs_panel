@@ -116,7 +116,7 @@ if (!$server['gq_online']) {
 		    echo "<td class='tbl2'>\n".$server['map']."</td>\n";
 	        echo "</tr>\n<tr>\n";
 		    echo "<td class='tbl1'>\n".$locale['csp_123b']."</td>\n";
-		    echo "<td class='tbl1'>\n".$server['sm_nextmap']."</td>\n";
+		    echo "<td class='tbl1'>\n".$server['amx_nextmap']."</td>\n";
 	        echo "</tr>\n<tr>\n";
 	        echo "<td class='tbl2'>\n".$locale['csp_124']."</td>\n";
 	        echo "<td class='tbl2'>\n".$server['num_players']." / ".$server['max_players']."</td>\n";
