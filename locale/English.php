@@ -12,7 +12,7 @@ $locale['csp_104'] = "Port";
 $locale['csp_105'] = "Players";
 $locale['csp_106'] = "Anticheat";
 $locale['csp_107'] = "Mod";
-
+$locale['csp_108'] = "Type";
 //add_server.php
 $locale['csp_111'] = "Add another server";
 $locale['csp_112'] = "Return to site";
@@ -29,6 +29,7 @@ $locale['csp_120'] = "Hostname";
 $locale['csp_121'] = "Server ip";
 $locale['csp_122'] = "Game mod";
 $locale['csp_123'] = "Curent map";
+$locale['csp_123b'] = "Next map";
 $locale['csp_124'] = "Online players";
 $locale['csp_125'] = "Secure";
 $locale['csp_126'] = "Server Os";
@@ -38,6 +39,7 @@ $locale['csp_129'] = "Version";
 $locale['csp_130'] = "Server stats";
 $locale['csp_131'] = "Frags";
 $locale['csp_132'] = "Time";
+$locale['csp_133'] = "Ping";
 $locale['csp_134'] = "Yes";
 $locale['csp_135'] = "No";
 $locale['csp_136'] = "Windows";
@@ -62,8 +64,8 @@ $locale['csp_timeUnits'] = array(
     'seconds' => 's'
 );
 
-
-
-$cod = array(1 => "Not Secure", 2 => "VAC Secure", 3 => "VAC Secure2", 4 => "HLGuard", 5 => "Cheating-Death", 6 => "Other" );
-$modul = array(1 => "Normal", 2 => "Respawn", 3 => "WAR3FT", 4 => "Heroes", 5 => "Other" );
+$play = array(20=>"20",10=>"10",12=>"12",14=>"14",16=>"16",18=>"18",22=>"22",24=>"24",26=>"26",28=>"28",30=>"30",32=>"32");
+$code = array(1 => "Not Secure", 2 => "VAC Secure", 3 => "VAC Secure2", 4 => "HLGuard", 5 => "Cheating-Death", 6 => "Other" );
+$mod = array(1 => "Normal", 2 => "Respawn", 3 => "WAR3FT", 4 => "Heroes", 5 => "Other" );
+$typ = array(1 => "CS 1.6", 2 => "CS Source" );
 ?>

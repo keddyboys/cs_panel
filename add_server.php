@@ -36,8 +36,9 @@ if (isset($_POST['submit'])) {
     $player = isset($_POST['player']) && isNum($_POST['player']) ? $_POST['player'] : "20";
     $cod = isset($_POST['cod']) && isNum($_POST['cod']) ? $_POST['cod'] : "0";
     $modul = isset($_POST['modul']) && isNum($_POST['modul']) ? $_POST['modul'] : "0";
+	$type = isset($_POST['type']) && isNum($_POST['type']) ? $_POST['type'] : "0";
     
-	$result = dbquery("INSERT INTO ".DB_SERVER." (id, ip, port, player, cod, modul) VALUES (NULL, '$ip', '$port', '$player', '$cod', '$modul')");
+	$result = dbquery("INSERT INTO ".DB_SERVER." (id, ip, port, player, cod, modul, type) VALUES (NULL, '$ip', '$port', '$player', '$cod', '$modul', '$type')");
         if ($result) {
             echo "<center>".$locale['csp_119a']."</center>";
 			echo "<center><a href='".FUSION_SELF."'>".$locale['csp_111']."</a>&nbsp;&nbsp;<a href='".BASEDIR."news.php'>".$locale['csp_112']."</a></center>";				
@@ -62,36 +63,34 @@ if (isset($_POST['submit'])) {
             echo "</tr>\n<tr>\n";
             echo "<td align='right'>\n".$locale['csp_105']."</td>\n";
             echo "<td>\n<select class=textbox name='player' id='player'>\n";
-            echo "<option value='20'>20</option>\n";
-            echo "<option value='10'>10</option>\n";
-            echo "<option value='12'>12</option>\n";
-            echo "<option value='14'>14</option>\n";
-            echo "<option value='16'>16</option>\n";
-            echo "<option value='18'>18</option>\n";
-            echo "<option value='22'>22</option>\n";
-            echo "<option value='24'>24</option>\n";
-            echo "<option value='26'>26</option>\n";
-            echo "<option value='28'>28</option>\n";
-            echo "<option value='30'>30</option>\n";
-            echo "<option value='32'>32</option>\n";
+            echo "<option value=''>-----------------</option>\n";
+           foreach($play as $key => $value){
+            echo '<option value="'.$key.'">'.$value.'</option>';
+			}
             echo "</select>\n</td>\n";
             echo "</tr>\n<tr>\n";
             echo "<td align='right'>\n".$locale['csp_106']."</td>\n";
-            echo "<td>\n<select class=textbox name='cod' id='cod'>\n";
-            echo "<option value='1'>Not Secure</option>\n";
-            echo "<option value='2'>VAC Secure</option>\n";
-            echo "<option value='3'>VAC Secure2</option>\n";
-            echo "<option value='4'>HLGuard</option>\n";
-            echo "<option value='5'>Cheating-Death</option>\n";
-            echo "</select>\n</td>\n";
+			echo "<td>\n<select class=textbox name='cod' id='cod'>\n";
+            echo "<option value=''>-----------------</option>\n";
+			foreach($code as $key => $value){
+            echo '<option value="'.$key.'">'.$value.'</option>';
+			}
+			echo "</select>\n</td>\n";
             echo "</tr>\n<tr>\n";
             echo "<td align='right'>\n".$locale['csp_107']."</td>\n";
 			echo "<td>\n<select class=textbox name='modul' id='modul'>\n";
-			echo "<option value='1'>Normal</option>\n";
-			echo "<option value='2'>Respawn</option>\n";
-			echo "<option value='3'>WAR3FT</option>\n";
-			echo "<option value='4'>Heroes</option>\n";
-			echo "<option value='5'>Other</option>\n";
+			echo "<option value=''>-----------------</option>\n";
+			foreach($mod as $key => $value){
+            echo '<option value="'.$key.'">'.$value.'</option>';
+			}
+			echo "</select>\n</td>\n";
+			echo "</tr>\n<tr>\n";
+            echo "<td align='right'>\n".$locale['csp_108']."</td>\n";
+			echo "<td>\n<select class=textbox name='type' id='type'>\n";
+			echo "<option value=''>-----------------</option>\n";
+			foreach($typ as $key => $value){
+            echo '<option value="'.$key.'">'.$value.'</option>';
+			}
 			echo "</select>\n</td>\n";
 			echo "</tr>\n<tr>\n";
 			echo "<td colspan='2' align='center'>\n<input type='submit' name='submit' value='".$locale['csp_118']."' class='button'></td>\n";

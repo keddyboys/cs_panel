@@ -30,21 +30,11 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 if (!isset($_GET['rowstart']) || !isNum($_GET['rowstart'])) $_GET['rowstart'] = 0;
 $page=10;
 $num = dbcount("(id)", DB_SERVER);
-//print_r($_POST['ids']); 
-/*if (isset($_GET['action']) && $_GET['action'] == "deleteall") {
-	for($i=0;$i<$num;$i++){
-	$del_id = isset($_POST['checkbox'][$i]) ? $_POST['checkbox'][$i] : "";
-	$ids = $_POST['checkbox'][$i]; 
-	echo $ids;
-	}
-} else*/
 if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id']) && isnum($_GET['id']))) {
-        //for($i=0;$i<$num;$i++){
-			
-	        //$del_id = isset($_GET['checkbox'][$i]) ? $_GET['checkbox'][$i] : "";
+                
             $result = dbquery("DELETE FROM ".DB_SERVER." WHERE id='".$_GET['id']."'");
 			redirect(FUSION_SELF.$aidlink);
-        //}
+        
 		
 } else {
      
@@ -54,7 +44,8 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
             $player = isset($_POST['player']) && isNum($_POST['player']) ? $_POST['player'] : "20";
             $cod = isset($_POST['cod']) && isNum($_POST['cod']) ? $_POST['cod'] : "0";
             $modul = isset($_POST['modul']) && isNum($_POST['modul']) ? $_POST['modul'] : "0";
-    		$result = dbquery("UPDATE ".DB_SERVER." SET ip='$ip', port='$port', player='$player', cod='$cod', modul='$modul' WHERE id='".$_GET['id']."'");
+			$type = isset($_POST['type']) && isNum($_POST['type']) ? $_POST['type'] : "0";
+    		$result = dbquery("UPDATE ".DB_SERVER." SET ip='$ip', port='$port', player='$player', cod='$cod', modul='$modul', type='$type' WHERE id='".$_GET['id']."'");
 			redirect(FUSION_SELF.$aidlink);
 		}	
 		
@@ -67,6 +58,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
 		$player = $data['player'];
 		$cod = $data['cod'];
 		$modul = $data['modul'];
+		$type = $data['type'];
 		$formaction = FUSION_SELF.$aidlink."&amp;action=edit&amp;id=".$_GET['id'];
 		$open = $locale['csp_114'];
 		openside($open);
@@ -85,36 +77,34 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
             echo "</tr>\n<tr>\n";
             echo "<td align='right'>\n".$locale['csp_105']."</td>\n";
             echo "<td>\n<select class=textbox name='player' id='player' value='".$player."'>\n";
-            echo "<option value='20'>20</option>\n";
-            echo "<option value='10'>10</option>\n";
-            echo "<option value='12'>12</option>\n";
-            echo "<option value='14'>14</option>\n";
-            echo "<option value='16'>16</option>\n";
-            echo "<option value='18'>18</option>\n";
-            echo "<option value='22'>22</option>\n";
-            echo "<option value='24'>24</option>\n";
-            echo "<option value='26'>26</option>\n";
-            echo "<option value='28'>28</option>\n";
-            echo "<option value='30'>30</option>\n";
-            echo "<option value='32'>32</option>\n";
-            echo "</select>\n</td>\n";
+            echo "<option value='$player'>".$play[$player]."</option>\n";
+			foreach($play as $key => $value){
+            echo '<option value="'.$key.'">'.$value.'</option>';
+			}
+			echo "</select>\n</td>\n";
             echo "</tr>\n<tr>\n";
             echo "<td align='right'>\n".$locale['csp_106']."</td>\n";
             echo "<td>\n<select class=textbox name='cod' id='cod'  value='".$cod."'>\n";
-            echo "<option value='1'>Not Secure</option>\n";
-            echo "<option value='2'>VAC Secure</option>\n";
-            echo "<option value='3'>VAC Secure2</option>\n";
-            echo "<option value='4'>HLGuard</option>\n";
-            echo "<option value='5'>Cheating-Death</option>\n";
-            echo "</select>\n</td>\n";
+            echo "<option value='$cod'>".$code[$cod]."</option>\n";
+			foreach($code as $key => $value){
+            echo '<option value="'.$key.'">'.$value.'</option>';
+			}
+			echo "</select>\n</td>\n";
             echo "</tr>\n<tr>\n";
             echo "<td align='right'>\n".$locale['csp_107']."</td>\n";
 			echo "<td>\n<select class=textbox name='modul' id='modul' value='".$modul."'>\n";
-			echo "<option value='1'>Normal</option>\n";
-			echo "<option value='2'>Respawn</option>\n";
-			echo "<option value='3'>WAR3FT</option>\n";
-			echo "<option value='4'>Heroes</option>\n";
-			echo "<option value='5'>Other</option>\n";
+			echo "<option value='$modul'>".$mod[$modul]."</option>\n";
+			foreach($mod as $key => $value){
+            echo '<option value="'.$key.'">'.$value.'</option>';
+			}
+			echo "</select>\n</td>\n";
+			echo "</tr>\n<tr>\n";
+			echo "<td align='right'>\n".$locale['csp_108']."</td>\n";
+			echo "<td>\n<select class=textbox name='type' id='type' value='".$type."'>\n";
+			echo "<option value='$type'>".$typ[$type]."</option>\n";
+			foreach($typ as $key => $value){
+            echo '<option value="'.$key.'">'.$value.'</option>';
+			}
 			echo "</select>\n</td>\n";
 			echo "</tr>\n<tr>\n";
 			echo "<td colspan='2' align='center'>\n<input type='submit' name='save' value='".$locale['csp_155']."' class='button'></td>\n";
@@ -123,15 +113,8 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
 			
 		}	
     }
-
-
-
-
-
-
-
-
-		openside($locale['csp_113']);
+  
+    openside($locale['csp_113']);
 	$result2 = dbquery("SELECT * FROM ".DB_SERVER." ORDER BY `id` ASC  LIMIT ".$_GET['rowstart'].",".$page);		
 	        echo "<table width='400' border='0' cellspacing='1' cellpadding='0' align='center'>\n<tr>\n";
 	        echo "<tr>\n";

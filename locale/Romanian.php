@@ -11,9 +11,8 @@ $locale['csp_103'] = "Adresa";
 $locale['csp_104'] = "Port";
 $locale['csp_105'] = "Juc&#259;tori";
 $locale['csp_106'] = "Anticheat";
-$locale['csp_107'] = "Isp";
-$locale['csp_108'] = "Mod";
-$locale['csp_109'] = "&#354;ara";
+$locale['csp_107'] = "Mod";
+$locale['csp_108'] = "Tip server";
 //add_server.php
 $locale['csp_111'] = "Adaug&#259; alt server";
 $locale['csp_112'] = "Pagina principala";
@@ -28,6 +27,7 @@ $locale['csp_120'] = "Nume";
 $locale['csp_121'] = "Server ip";
 $locale['csp_122'] = "Game mod";
 $locale['csp_123'] = "Harta curent&#259;";
+$locale['csp_123b'] = "Harta urm&#259;toare";
 $locale['csp_124'] = "Juc&#259;tori online";
 $locale['csp_125'] = "Securizat";
 $locale['csp_126'] = "Sistem operare server";
@@ -37,7 +37,7 @@ $locale['csp_129'] = "Versiune";
 $locale['csp_130'] = "Status server";
 $locale['csp_131'] = "Fraguri";
 $locale['csp_132'] = "Timp";
-$locale['csp_133'] = "&#350;terge";
+$locale['csp_133'] = "Ping";
 $locale['csp_134'] = "Da";
 $locale['csp_135'] = "Nu";
 $locale['csp_136'] = "Windows";
@@ -62,9 +62,9 @@ $locale['csp_timeUnits'] = array(
     'minutes' => 'm',
     'seconds' => 's'
 );
-
-$cod = array(1 => "Not Secure", 2 => "VAC Secure", 3 => "VAC Secure2", 4 => "HLGuard", 5 => "Cheating-Death", 6 => "Other" );
-$net = array(1 => "Other", 2 => "Decknet", 3 => "Euroweb", 4 => "Fibernet", 5 => "Allnet", 6 => "Idilis", 7 => "iNES Group", 8 => "Infogate", 9 => "Mediasat", 10 => "RDS", 11 => "Romtelecom" );
-$modul = array(1 => "Normal", 2 => "Respawn", 3 => "WAR3FT", 4 => "Heroes", 5 => "Other" );
-$tara = array(1 => "RO", 2 => "FR", 3 => "DE", 4 => "IT", 5 => "ES", 6 => "GB", 7 => "US", 8=>"UE" );
+$play = array(20=>"20",10=>"10",12=>"12",14=>"14",16=>"16",18=>"18",22=>"22",24=>"24",26=>"26",28=>"28",30=>"30",32=>"32");
+$code = array(1 => "Not Secure", 2 => "VAC Secure", 3 => "VAC Secure2", 4 => "HLGuard", 5 => "Cheating-Death", 6 => "Other" );
+$mod = array(1 => "Normal", 2 => "Respawn", 3 => "WAR3FT", 4 => "Heroes", 5 => "Other" );
+//$tara = array(1 => "RO", 2 => "FR", 3 => "DE", 4 => "IT", 5 => "ES", 6 => "GB", 7 => "US", 8=>"UE" );
+$typ= array(1 => "CS1.6", 2 => "CS:Source" );
 ?>

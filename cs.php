@@ -37,7 +37,9 @@ openside($locale['csp_100']);
             echo "<th height=23 class='tbl2'><b>".$locale['csp_104']."</b></td>\n";
             echo "<th height=23 class='tbl2'><b>".$locale['csp_105']."</b></td>\n";
             echo "<th height=23 class='tbl2'><b>".$locale['csp_106']."</b></td>\n";
-            echo "<th height=23 class='tbl2'><b>".$locale['csp_107']."</b></td>\n</tr>\n";
+            echo "<th height=23 class='tbl2'><b>".$locale['csp_107']."</b></td>\n";
+			echo "<th height=23 class='tbl2'><b>".$locale['csp_108']."</b></td>\n";
+			echo "</tr>\n";
         $result = dbquery("SELECT * FROM ".DB_SERVER." ORDER BY `id` asc  LIMIT ".$_GET['rowstart'].", ".$page); 
         
         $i = 1;
@@ -50,8 +52,9 @@ openside($locale['csp_100']);
             echo "<td width=135 height=23 class='$tbl'>".$data['ip']."</td>\n";
             echo "<td height=23 width=45 class='$tbl'>".$data['port']."</td>\n";
             echo "<td height=23 width=45 class='$tbl'>".$data['player']."</td>\n";
-            echo "<td height=23 width=75 class='$tbl'>".$cod[$data['cod']]."</td>\n";
-            echo "<td height=23 width=45 class='$tbl'>".$modul[$data['modul']]."</td>\n";
+            echo "<td height=23 width=75 class='$tbl'>".$code[$data['cod']]."</td>\n";
+            echo "<td height=23 width=45 class='$tbl'>".$mod[$data['modul']]."</td>\n";
+			echo "<td height=23 class='$tbl' width=45>\n".$typ[$data['type']]."</td>\n";
             echo"</tr>\n";
 			$i++;     
     }
