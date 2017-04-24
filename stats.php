@@ -15,13 +15,6 @@
 | copyright header is strictly prohibited without
 | written permission from the original author(s).
 +--------------------------------------------------------*/
-$default_opts = array(
-  'http'=>array(
-    'method'=>"GET",
-    'user_agent'=>'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36'
-  )
-);
-stream_context_set_default($default_opts);
 require_once "../../maincore.php";
 if (file_exists(INFUSIONS."cs_panel/locale/".$settings['locale'].".php")) {
 	include INFUSIONS."cs_panel/locale/".$settings['locale'].".php";
@@ -32,6 +25,14 @@ include INFUSIONS."cs_panel/infusion_db.php";
 include_once INCLUDES."infusions_include.php";
 
 require_once THEMES."templates/header.php";
+
+$default_opts = array(
+  'http'=>array(
+    'method'=>"GET",
+    'user_agent'=>'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36'
+  )
+);
+stream_context_set_default($default_opts);
 
 require_once INFUSIONS."cs_panel/includes/Game3/Autoloader.php"; 
  
