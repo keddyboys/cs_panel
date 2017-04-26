@@ -64,7 +64,7 @@ $inf_deldbrow[1] = DB_PANELS." WHERE panel_filename='".$inf_folder."'";
 
 $inf_adminpanel[1] = array(
 	"title" => $locale['csp_admin1'],
-	"image" => "cs.gif",
+	"image" => "cs.png",
 	"panel" => "cs_panel_admin.php",
 	"rights" => "csp"
 );
