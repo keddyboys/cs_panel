@@ -29,7 +29,7 @@ require_once THEMES."templates/header.php";
 $default_opts = array(
   'http'=>array(
     'method'=>"GET",
-    'user_agent'=>'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36'
+    'user_agent'=>'Mozilla/5.0 (Linux; U; Android 0.5; en-us) AppleWebKit/522+ (KHTML, like Gecko) Safari/419.3'
   )
 );
 stream_context_set_default($default_opts);
@@ -76,24 +76,6 @@ $GameQ->setOption('timeout', 5); // seconds
 
 $results = $GameQ->process();
 $server = $results[$server_ip.':'.$server_port];
-/*$servers = array(
-	'server' => array($server_type, $server_ip, $server_port)
-);
-$gq = new GameQ();
-$gq->addServers($servers);
-
-    
-// You can optionally specify some settings
-$gq->setOption('timeout', 200);
-
-
-// You can optionally specify some output filters,
-// these will be applied to the results obtained.
-$gq->setFilter('normalise');
-$gq->setFilter('sortplayers');
-
-// Send requests, and parse the data
-$results = $gq->requestData();*/
 
 
         	echo "<table border='0' class='margins' cellspacing='1' cellpadding='0' align='center'>\n";
@@ -114,7 +96,8 @@ if (!$server['gq_online']) {
 		    echo "<td class='tbl1'>\n". $server['hostname']."</td>\n";
 		    echo "<td rowspan='10' align='center' class='tbl1'>\n";
 		$tbl = "tbl".($i % 2 == 0 ? 2 : 1);
-		$type = $server['gq_type'] == 'cs' ? $typ['1'] : $typ['2'];
+		//$type = $server['gq_type'] == 'cs' ? $typ['1'] : $typ['2'];
+		$type = $typ[$server['gq_type']];
 		$fileUrl = "https://image.gametracker.com/images/maps/160x120/cs/".$server['map'].".jpg";
         $AgetHeaders = @get_headers($fileUrl);
         if (preg_match("|200|", $AgetHeaders[0])) {

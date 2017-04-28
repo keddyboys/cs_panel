@@ -1,10 +1,10 @@
 <?php
 //cs_panel.php
-$locale['csp_title'] = "Counter-strike panel";
+$locale['csp_title'] = "Panou Counter-Strike";
 $locale['csp_desc'] = "Descriere infuzie";
-$locale['csp_admin1'] = "Counter-strike panel";
+$locale['csp_admin1'] = "Panou Counter-Strike";
 $locale['csp_link1'] = "Adaug&#259; server";
-$locale['csp_100'] = "Counter-strike panel";
+$locale['csp_100'] = "Panou Counter-Strike";
 $locale['csp_101'] = "Nr.";
 $locale['csp_102'] = "Status";
 $locale['csp_103'] = "Adresa";
@@ -17,17 +17,20 @@ $locale['csp_109'] = "Set&#259;ri";
 $locale['csp_110'] = "Servere";
 //add_server.php
 $locale['csp_111'] = "Adaug&#259; alt server";
-$locale['csp_112'] = "Pagina principala";
+$locale['csp_112'] = "Pagina principal&#259;";
 $locale['csp_113'] = "&#350;terge&#355;i server(e).";
 $locale['csp_114'] = "Lista server";
 $locale['csp_115'] = "Avem ";
 $locale['csp_116'] = "server(e) in baza noastr&#259; de date.";
 $locale['csp_117'] = "Status";
 $locale['csp_118'] = "Adaug&#259; server";
+$locale['csp_119a'] = "Serverul a fost ad&#259;ugat cu succes &#238;n baza de date!";
+$locale['csp_119b'] = "Eroare: Acest server deja exist&#259; !!";
+
 //stats.php
 $locale['csp_120'] = "Nume";
-$locale['csp_121'] = "Server ip";
-$locale['csp_122'] = "Game mod";
+$locale['csp_121'] = "IP Server";
+$locale['csp_122'] = "Mod joc";
 $locale['csp_123'] = "Harta curent&#259;";
 $locale['csp_123b'] = "Harta urm&#259;toare";
 $locale['csp_124'] = "Juc&#259;tori online";
@@ -36,7 +39,7 @@ $locale['csp_126'] = "Sistem operare server";
 $locale['csp_127'] = "Tip server";
 $locale['csp_128'] = "Parol&#259;?";
 $locale['csp_129'] = "Versiune";
-$locale['csp_130'] = "Status server";
+$locale['csp_130'] = "Statistici server";
 $locale['csp_131'] = "Fraguri";
 $locale['csp_132'] = "Timp";
 $locale['csp_133'] = "Ping";

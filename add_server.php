@@ -41,9 +41,10 @@ if (isset($_POST['submit'])) {
 	$result = dbquery("INSERT INTO ".DB_SERVER." (id, ip, port, player, cod, modul, type) VALUES (NULL, '$ip', '$port', '$player', '$cod', '$modul', '$type')");
         if ($result) {
             echo "<center>".$locale['csp_119a']."</center>";
-			echo "<center><a href='".FUSION_SELF."'>".$locale['csp_111']."</a>&nbsp;&nbsp;<a href='".BASEDIR."news.php'>".$locale['csp_112']."</a></center>";				
+		    echo "<center><a href='".FUSION_SELF."'>".$locale['csp_111']."</a>&nbsp;&nbsp;<a href='".BASEDIR."news.php'>".$locale['csp_112']."</a></center>";				
 		} else {
 		    echo "<b><center>".$locale['csp_119b']."</center></B>";
+			echo "<center><a href='".FUSION_SELF."'>".$locale['csp_111']."</a>&nbsp;&nbsp;<a href='".BASEDIR."news.php'>".$locale['csp_112']."</a></center>";
 		}
 
 } else {
