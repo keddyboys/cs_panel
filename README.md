@@ -5,7 +5,7 @@ Supports the following servers :
 - Counter-Strike 1.6(CS 1.6)
 - Counter-Strike:Source(CS Source)
 - Counter-Strike:Global Offensive(CS GO)
-- Counter-Strike:Condition Zero(CS Zero)
+- Counter-Strike:Condition Zero(CS Zero) <br /> 
  RO : Actualizare a infuziei mele vechi cs_panel la Php-Fusion v7.02.07 <br /> 
  Aceasta este o infuzie pentru statusul serverelor de Counter-Strike.<br /> 
  Suportă următoarele tipuri de servere :  
