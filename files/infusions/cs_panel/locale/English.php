@@ -1,10 +1,10 @@
 <?php
 //cs_panel.php
-$locale['csp_title'] = "Counter-strike panel";
-$locale['csp_desc'] = "Infusion Description";
-$locale['csp_admin1'] = "Counter-strike panel";
+$locale['csp_title'] = "Counter-Strike panel";
+$locale['csp_desc'] = "Verify Counter-Strike servers";
+$locale['csp_admin1'] = "Counter-Strike panel";
 $locale['csp_link1'] = "Add server";
-$locale['csp_100'] = "Counter-strike panel";
+$locale['csp_100'] = "Counter-Strike panel";
 $locale['csp_101'] = "No";
 $locale['csp_102'] = "Stats";
 $locale['csp_103'] = "Adress";
@@ -64,6 +64,12 @@ $locale['csp_156'] = "Refresh";
 $locale['csp_157'] = "Close";
 $locale['csp_158'] = "There is no server with that id";
 $locale['csp_159'] = "Connect";
+
+$locale['csp_160'] = "Settings updated";
+$locale['csp_161'] = "Server updated";
+$locale['csp_162'] = "Server deleted";
+$locale['csp_162b'] = "Servers deleted";
+$locale['csp_163'] = "Server added";
 $locale['csp_timeUnits'] = array(
     'days' => 'd',
     'hours' => 'h',
@@ -76,4 +82,5 @@ $code = array(1 => "Not Secure", 2 => "VAC Secure", 3 => "VAC Secure2", 4 => "HL
 $mod = array(1 => "Normal", 2 => "Respawn", 3 => "WAR3FT", 4 => "Heroes", 5 => "Other" );
 $typ = array(1 => "CS 1.6", 2 => "CS Source", 3 => "CS 1.5", 4 => "CS Condition Zero", 5 => "CS Global Offensive" );
 $typo = array(1 => "cs16", 2 => "css", 3 => "cs15", 4 => "cscz", 5 => "csgo" );
+$type = array("cs16" => "CS 1.6", "css" => "CS Source", "cs15" => "CS 1.5", "cscz" => "CS Condition Zero", "csgo" => "CS Global Offensive");
 ?>

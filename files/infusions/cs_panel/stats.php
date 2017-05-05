@@ -39,7 +39,7 @@ require_once INFUSIONS."cs_panel/includes/GameQ/Autoloader.php";
  
 $cs_settings = get_settings("cs_panel");
 
-error_reporting(E_ALL); 
+error_reporting(~E_ALL); 
 $id = isset($_GET['id']) && isNum($_GET['id']) ? $_GET['id'] : "0";
 $data = dbarray(dbquery("SELECT ip, port, type FROM ".DB_SERVER."  WHERE id=".$id));
 if ($data !=0) {
@@ -103,8 +103,7 @@ if (!$server['gq_online']) {
 		    echo "<td class='tbl1'>\n". $server['hostname']."</td>\n";
 		    echo "<td rowspan='10' align='center' class='tbl1'>\n";
 		$tbl = "tbl".($i % 2 == 0 ? 2 : 1);
-		//$type = $server['gq_type'] == 'cs' ? $typ['1'] : $typ['2'];
-		$type = $typ[$server['gq_type']];
+		
 		$fileUrl = "https://image.gametracker.com/images/maps/160x120/cs/".$server['map'].".jpg";
         $AgetHeaders = @get_headers($fileUrl);
         if (preg_match("|200|", $AgetHeaders[0])) {
@@ -117,7 +116,7 @@ if (!$server['gq_online']) {
 		    echo "<td class='tbl2'>\n".(isNum($server_ip) ? $server_ip : gethostbyname($server_ip))."</td>\n"; 
             echo "</tr>\n<tr>\n";
 		    echo "<td class='tbl1'>\n".$locale['csp_122']."</td>\n";
-		    echo "<td class='tbl1'>\n".$type."</td>\n";
+		    echo "<td class='tbl1'>\n".$type[$server['gq_type']]."</td>\n";
 	        echo "</tr>\n<tr>\n";
 		    echo "<td class='tbl2'>\n".$locale['csp_123']."</td>\n";
 		    echo "<td class='tbl2'>\n".$server['map']."</td>\n";

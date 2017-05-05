@@ -27,9 +27,19 @@ if (file_exists(INFUSIONS."cs_panel/locale/".$settings['locale'].".php")) {
 	include INFUSIONS."cs_panel/locale/English.php";
 }
 include INCLUDES."infusions_include.php";
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+if (isset($_GET['status']) && !isset($message)) {
+	if ($_GET['status'] == "su") {
+		$message = $locale['csp_161'];
+	} elseif ($_GET['status'] == "del") {
+		$message = $locale['csp_162'];
+	} elseif ($_GET['status'] == "delf") {
+		$message = $locale['csp_162b'];
+	}
+	if ($message) {	echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; }
+} 
+
 if (!isset($_GET['rowstart']) || !isNum($_GET['rowstart'])) $_GET['rowstart'] = 0;
-//if (!isset($_GET['page']) || !$_GET['page']) $_GET['page'] = "";
 $nav = "<table cellpadding='0' cellspacing='0' class='tbl-border' align='center' style='width:300px; margin-bottom:20px; text-align:center;'>\n<tr>\n";
 $nav .= "<td class='".(!isset($_GET['page']) || $_GET['page'] != "settings" ? "tbl2" : "tbl1")."'><a href='".FUSION_SELF.$aidlink."'>".$locale['csp_110']."</a></td>\n";
 $nav .= "<td class='".(isset($_GET['page']) && $_GET['page'] == "settings" ? "tbl2" : "tbl1")."'><a href='".FUSION_SELF.$aidlink."&amp;page=settings'>".$locale['csp_109']."</a></td>\n";
@@ -38,15 +48,11 @@ $nav .= "</tr>\n</table>\n";
 $page=10;
 $num = dbcount("(id)", DB_SERVER);
 if (!isset($_GET['page']) || $_GET['page'] != "settings") {
-	
-//        echo "Test";
-
-
 
 if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id']) && isnum($_GET['id']))) {
                 
             $result = dbquery("DELETE FROM ".DB_SERVER." WHERE id='".$_GET['id']."'");
-			redirect(FUSION_SELF.$aidlink);
+			redirect(FUSION_SELF.$aidlink."&status=del");
         
 		
 } else {
@@ -59,7 +65,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
             $modul = isset($_POST['modul']) && isNum($_POST['modul']) ? $_POST['modul'] : "0";
 			$type = isset($_POST['type']) && isNum($_POST['type']) ? $_POST['type'] : "0";
     		$result = dbquery("UPDATE ".DB_SERVER." SET ip='$ip', port='$port', player='$player', cod='$cod', modul='$modul', type='$type' WHERE id='".$_GET['id']."'");
-			redirect(FUSION_SELF.$aidlink);
+			redirect(FUSION_SELF.$aidlink."&status=su");
 		}	
 		
     if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['id']) && isnum($_GET['id']))) {
@@ -75,7 +81,7 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
 		$formaction = FUSION_SELF.$aidlink."&amp;action=edit&amp;id=".$_GET['id'];
 		$open = $locale['csp_114'];
 		openside($open);
-		   // echo $nav;
+		   
             echo "<div style='text-align:center'>".$locale['csp_115'] ."&nbsp;".$num."&nbsp;".$locale['csp_116']."</div>\n";
             echo "<table width='100%' cellspacing=1 cellpadding=0 align='center'>\n";
             echo "<tr align=center>\n<td align=center>\n";
@@ -130,11 +136,12 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
     
     openside($locale['csp_113']);
 	       echo $nav;
-		   
+		   $j = 1;
 	$result2 = dbquery("SELECT * FROM ".DB_SERVER." ORDER BY `id` ASC  LIMIT ".$_GET['rowstart'].",".$page);		
 	        echo "<table width='400' border='0' cellspacing='1' cellpadding='0' align='center'>\n<tr>\n";
 	        echo "<tr>\n";
-            echo "<td align='center' bgcolor='#FFFFFF'>\n".$locale['csp_102']."</td>\n";
+            echo "<td align='center' bgcolor='#FFFFFF'>\n#</td>\n";
+			echo "<td align='center' bgcolor='#FFFFFF'>\n".$locale['csp_101']."</td>\n";
             echo "<td bgcolor='#FFFFFF' align='center'>\n".$locale['csp_103']."</td>\n";
             echo "<td bgcolor='#FFFFFF' align='center'>\n".$locale['csp_104']."</td>\n";
 		    echo "<td align='center' bgcolor='#FFFFFF'>\n<strong>".$locale['csp_151']."</strong></td>\n";
@@ -144,8 +151,9 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
 		
             echo "<tr>\n";
             echo "<td align='center' bgcolor='#FFFFFF'>\n<input type='checkbox' name='checkbox[]' id='checkbox[]' value=".$data2['id'].">\n</td>\n";
-            echo "<td bgcolor='#FFFFFF' align='center'>\n".$data2['id']."</td>\n";
+            echo "<td bgcolor='#FFFFFF' align='center'>\n".($j++)."</td>\n";
             echo "<td bgcolor='#FFFFFF' align='center'>\n".$data2['ip']."</td>\n";
+			echo "<td align='center' bgcolor='#FFFFFF'>\n".$data2['port']."</td>\n";			  
 		    echo "<td align='center' bgcolor='#FFFFFF'>\n<strong><a href='".FUSION_SELF.$aidlink."&amp;action=edit&amp;id=".$data2['id']."'>".$locale['csp_151']."</a> -\n";
 		    echo "<a href='".FUSION_SELF.$aidlink."&amp;action=delete&amp;id=".$data2['id']."' onclick=\"return confirm('".$locale['csp_154']."');\">".$locale['csp_152']."</a></td>\n";
 		    echo "</strong></td>\n";
@@ -163,11 +171,11 @@ closeside();
     if (isset($_POST['del'])){
         for($i=0;$i<$num;$i++){
             $del_id = isset($_POST['checkbox'][$i]) ? $_POST['checkbox'][$i] : "";
-			//echo $del_id; 
+			
 			$result = dbquery("DELETE FROM ".DB_SERVER." WHERE id='".$del_id."'");
         //
         }
-	        redirect(FUSION_SELF.$aidlink);
+	        redirect(FUSION_SELF.$aidlink."&status=delf");
 	}  
 closeside();
 } else {
@@ -181,6 +189,7 @@ closeside();
 		if (isset($_POST['show_players']) && ($_POST['show_players'] == 1 || $_POST['show_players'] == 0)) {
 			$setting = set_setting("show_players", $_POST['show_players'], "cs_panel");
 		}
+            redirect(FUSION_SELF.$aidlink."&status=sn");
 	}	
 	$inf_settings = get_settings("cs_panel");
 	openside($locale['csp_109']);

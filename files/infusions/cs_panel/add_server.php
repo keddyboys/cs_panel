@@ -27,8 +27,22 @@ if (file_exists(INFUSIONS."cs_panel/locale/".$settings['locale'].".php")) {
 }
 if (!iMEMBER) redirect(BASEDIR."index.php");
 
-        openside($locale['csp_118']);
-if (isset($_POST['submit'])) {
+if (isset($_GET['status']) && !isset($message)) {
+	if ($_GET['status'] == "sn") {
+		openside($locale['csp_118']);
+		$message .= $locale['csp_163'];
+		$message .= "<center>".$locale['csp_119a']."</center>";
+		$message .= "<center><a href='".FUSION_SELF."'>".$locale['csp_111']."</a>&nbsp;&nbsp;<a href='".BASEDIR."news.php'>".$locale['csp_112']."</a></center>";
+	} elseif ($_GET['status'] == "se") {
+		openside($locale['csp_118']);
+		$message .= "<b><center>".$locale['csp_119b']."</center></B>";
+		$message .= "<center><a href='".FUSION_SELF."'>".$locale['csp_111']."</a>&nbsp;&nbsp;<a href='".BASEDIR."news.php'>".$locale['csp_112']."</a></center>";
+	}
+	
+	if ($message) {	echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; }
+}
+
+if (isset($_POST['submit']) && !isset($message)) {
 		
 	
     $ip = stripinput(trim($_POST['ip']));
@@ -40,15 +54,14 @@ if (isset($_POST['submit'])) {
     
 	$result = dbquery("INSERT INTO ".DB_SERVER." (id, ip, port, player, cod, modul, type) VALUES (NULL, '$ip', '$port', '$player', '$cod', '$modul', '$type')");
         if ($result) {
-            echo "<center>".$locale['csp_119a']."</center>";
-		    echo "<center><a href='".FUSION_SELF."'>".$locale['csp_111']."</a>&nbsp;&nbsp;<a href='".BASEDIR."news.php'>".$locale['csp_112']."</a></center>";				
+			redirect(FUSION_SELF.$aidlink."&status=sn");
 		} else {
-		    echo "<b><center>".$locale['csp_119b']."</center></B>";
-			echo "<center><a href='".FUSION_SELF."'>".$locale['csp_111']."</a>&nbsp;&nbsp;<a href='".BASEDIR."news.php'>".$locale['csp_112']."</a></center>";
+		    redirect(FUSION_SELF.$aidlink."&status=se");
 		}
 
-} else {
-
+} elseif (!isset($message)) {
+            
+			openside($locale['csp_118']);
             echo "<table border='0' class='margins' cellspacing=1 cellpadding=0 align=center>\n";
             echo "<tr align=center><td align=center>\n";
             echo "<table width='100%' cellspacing=1 cellpadding=0 align='center'>\n";
