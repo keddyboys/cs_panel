@@ -31,7 +31,7 @@ if (file_exists(INFUSIONS."cs_panel/locale/".$settings['locale'].".php")) {
 // Infusion general information
 $inf_title = $locale['csp_title'];
 $inf_description = $locale['csp_desc'];
-$inf_version = "2.2";
+$inf_version = "2.21";
 $inf_developer = "keddy <br /><a href='http://www.phpfusion.ro/'>PHP-Fusion Rom&#226;nia</a>";
 $inf_email = "kmodsro@gmail.com";
 $inf_weburl = "http://dev.kmods.ro";
@@ -47,11 +47,12 @@ player varchar(2) NOT NULL DEFAULT '' ,
 cod varchar(25) NOT NULL DEFAULT '' ,
 modul varchar(25) NOT NULL DEFAULT '' ,
 type varchar(25) NOT NULL DEFAULT '',
+sorder SMALLINT(5) UNSIGNED NOT NULL,
 PRIMARY KEY (ip),
 UNIQUE id (id)
 )ENGINE=MyISAM;";
 
-$inf_insertdbrow[1] = DB_SERVER."(id, ip, port, player, cod, modul, type) VALUES(`NULL`, `ip`, `port`, `player`, `cod`, `modul`, `type`) ";
+//$inf_insertdbrow[1] = DB_SERVER."(id, ip, port, player, cod, modul, type, order) VALUES(`NULL`, `ip`, `port`, `player`, `cod`, `modul`, `type`, `order`) ";
 $inf_insertdbrow[2] = DB_PANELS." (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES('".$locale['csp_title']."', 'cs_panel', '', '2', '3', 'file', '0', '0', '0')";
 
 $inf_insertdbrow[3] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('servers_per_page', '10', '".$inf_folder."')";

@@ -42,6 +42,8 @@ if (isset($_GET['status']) && !isset($message)) {
 	if ($message) {	echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; }
 }
 
+        
+
 if (isset($_POST['submit']) && !isset($message)) {
 		
 	
@@ -51,17 +53,17 @@ if (isset($_POST['submit']) && !isset($message)) {
     $cod = isset($_POST['cod']) && isNum($_POST['cod']) ? $_POST['cod'] : "0";
     $modul = isset($_POST['modul']) && isNum($_POST['modul']) ? $_POST['modul'] : "0";
 	$type = isset($_POST['type']) && isNum($_POST['type']) ? $_POST['type'] : "0";
-    
-	$result = dbquery("INSERT INTO ".DB_SERVER." (id, ip, port, player, cod, modul, type) VALUES (NULL, '$ip', '$port', '$player', '$cod', '$modul', '$type')");
+    $sorder = isset($_POST['sorder']) && isNum($_POST['sorder']) ? $_POST['sorder'] : "";
+	if(!$sorder) $sorder=dbresult(dbquery("SELECT MAX(sorder) FROM ".DB_SERVER),0)+1;
+	$result = dbquery("INSERT INTO ".DB_SERVER." (id, ip, port, player, cod, modul, type, sorder) VALUES (NULL, '$ip', '$port', '$player', '$cod', '$modul', '$type', '$sorder')");
         if ($result) {
-			redirect(FUSION_SELF.$aidlink."&status=sn");
+			redirect(FUSION_SELF.$aidlink."&status=sn");            	
 		} else {
-		    redirect(FUSION_SELF.$aidlink."&status=se");
+		    redirect(FUSION_SELF.$aidlink."&status=se");            	
 		}
 
 } elseif (!isset($message)) {
-            
-			openside($locale['csp_118']);
+            openside($locale['csp_118']);  
             echo "<table border='0' class='margins' cellspacing=1 cellpadding=0 align=center>\n";
             echo "<tr align=center><td align=center>\n";
             echo "<table width='100%' cellspacing=1 cellpadding=0 align='center'>\n";
@@ -107,6 +109,9 @@ if (isset($_POST['submit']) && !isset($message)) {
 			}
 			echo "</select>\n</td>\n";
 			echo "</tr>\n<tr>\n";
+			echo "<td width='42%' align='right'>\n".$locale['csp_164']."</td>\n";
+            echo "<td>\n<input class=textbox name='sorder' type='text' size='7' id='sorder'></td>\n";
+            echo "</tr>\n<tr>\n";
 			echo "<td colspan='2' align='center'>\n<input type='submit' name='submit' value='".$locale['csp_118']."' class='button'></td>\n";
 			echo "</tr>\n</table>\n</form>\n";
 			echo "</td>\n</tr>\n</table>\n";

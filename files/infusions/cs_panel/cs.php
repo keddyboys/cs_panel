@@ -43,7 +43,7 @@ openside($locale['csp_100']);
             echo "<th height=23 class='tbl2'><b>".$locale['csp_107']."</b></td>\n";
 			echo "<th height=23 class='tbl2'><b>".$locale['csp_108']."</b></td>\n";
 			echo "</tr>\n";
-        $result = dbquery("SELECT * FROM ".DB_SERVER." ORDER BY `id` asc  LIMIT ".$_GET['rowstart'].", ".$cs_settings['servers_per_page']); 
+        $result = dbquery("SELECT * FROM ".DB_SERVER." ORDER BY `sorder`  LIMIT ".$_GET['rowstart'].", ".$cs_settings['servers_per_page']); 
         
         $i = 1;
     while ($data=dbarray($result)) {

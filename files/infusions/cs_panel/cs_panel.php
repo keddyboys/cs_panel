@@ -42,7 +42,7 @@ if ($num > 0) {
         echo "<th height=23 class='tbl2'>\n<b>".$locale['csp_107']."</b></td>\n";
 		echo "<th height=23 class='tbl2'>\n<b>".$locale['csp_108']."</b></td>\n";
         echo "</tr>\n";
-    $result = dbquery("SELECT * FROM ".DB_SERVER." ORDER BY id desc  LIMIT ".$_GET['rowstart'].",".$cs_settings['servers_in_panel']); 
+    $result = dbquery("SELECT * FROM ".DB_SERVER." ORDER BY sorder  LIMIT ".$_GET['rowstart'].",".$cs_settings['servers_in_panel']); 
     $i = 1; 
     while ($data=dbarray($result)) {
 	$tbl = "tbl".($i % 2 == 0 ? 2 : 1);

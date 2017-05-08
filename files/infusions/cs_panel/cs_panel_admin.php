@@ -33,13 +33,12 @@ if (isset($_GET['status']) && !isset($message)) {
 		$message = $locale['csp_161'];
 	} elseif ($_GET['status'] == "del") {
 		$message = $locale['csp_162'];
-	} elseif ($_GET['status'] == "delf") {
-		$message = $locale['csp_162b'];
 	}
 	if ($message) {	echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; }
-} 
+}
 
 if (!isset($_GET['rowstart']) || !isNum($_GET['rowstart'])) $_GET['rowstart'] = 0;
+//if (!isset($_GET['page']) || !$_GET['page']) $_GET['page'] = "";
 $nav = "<table cellpadding='0' cellspacing='0' class='tbl-border' align='center' style='width:300px; margin-bottom:20px; text-align:center;'>\n<tr>\n";
 $nav .= "<td class='".(!isset($_GET['page']) || $_GET['page'] != "settings" ? "tbl2" : "tbl1")."'><a href='".FUSION_SELF.$aidlink."'>".$locale['csp_110']."</a></td>\n";
 $nav .= "<td class='".(isset($_GET['page']) && $_GET['page'] == "settings" ? "tbl2" : "tbl1")."'><a href='".FUSION_SELF.$aidlink."&amp;page=settings'>".$locale['csp_109']."</a></td>\n";
@@ -48,6 +47,10 @@ $nav .= "</tr>\n</table>\n";
 $page=10;
 $num = dbcount("(id)", DB_SERVER);
 if (!isset($_GET['page']) || $_GET['page'] != "settings") {
+	
+//        echo "Test";
+
+
 
 if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id']) && isnum($_GET['id']))) {
                 
@@ -55,6 +58,18 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
 			redirect(FUSION_SELF.$aidlink."&status=del");
         
 		
+} elseif ((isset($_GET['action']) && $_GET['action'] == "mu") && (isset($_GET['id']) && isnum($_GET['id'])) && (isset($_GET['sorder']) && isnum($_GET['sorder']))) {
+        $data = dbarray(dbquery("SELECT id FROM ".DB_SERVER." WHERE sorder='".$_GET['sorder']."'"));
+		    $result = dbquery("UPDATE ".DB_SERVER." SET sorder=sorder+1 WHERE id='".$data['id']."'");
+		    $result = dbquery("UPDATE ".DB_SERVER." SET sorder=sorder-1 WHERE id='".$_GET['id']."'");
+			redirect(FUSION_SELF.$aidlink);
+
+} elseif ((isset($_GET['action']) && $_GET['action'] == "md") && (isset($_GET['id']) && isnum($_GET['id'])) && (isset($_GET['sorder']) && isnum($_GET['sorder']))) {
+		    $data = dbarray(dbquery("SELECT id FROM ".DB_SERVER." WHERE sorder='".$_GET['sorder']."'"));
+		    $result = dbquery("UPDATE ".DB_SERVER." SET sorder=sorder-1 WHERE id='".$data['id']."'");
+		    $result = dbquery("UPDATE ".DB_SERVER." SET sorder=sorder+1 WHERE id='".$_GET['id']."'");
+		    redirect(FUSION_SELF.$aidlink);
+
 } else {
      
         if (isset($_POST['save'])) {
@@ -64,7 +79,8 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
             $cod = isset($_POST['cod']) && isNum($_POST['cod']) ? $_POST['cod'] : "0";
             $modul = isset($_POST['modul']) && isNum($_POST['modul']) ? $_POST['modul'] : "0";
 			$type = isset($_POST['type']) && isNum($_POST['type']) ? $_POST['type'] : "0";
-    		$result = dbquery("UPDATE ".DB_SERVER." SET ip='$ip', port='$port', player='$player', cod='$cod', modul='$modul', type='$type' WHERE id='".$_GET['id']."'");
+			$sorder = isset($_POST['sorder']) && isNum($_POST['sorder']) ? $_POST['sorder'] : "";
+    		$result = dbquery("UPDATE ".DB_SERVER." SET ip='$ip', port='$port', player='$player', cod='$cod', modul='$modul', type='$type', type='$sorder' WHERE id='".$_GET['id']."'");
 			redirect(FUSION_SELF.$aidlink."&status=su");
 		}	
 		
@@ -78,10 +94,11 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
 		$cod = $data['cod'];
 		$modul = $data['modul'];
 		$type = $data['type'];
+		$sorder = $data['sorder'];
 		$formaction = FUSION_SELF.$aidlink."&amp;action=edit&amp;id=".$_GET['id'];
 		$open = $locale['csp_114'];
 		openside($open);
-		   
+		   // echo $nav;
             echo "<div style='text-align:center'>".$locale['csp_115'] ."&nbsp;".$num."&nbsp;".$locale['csp_116']."</div>\n";
             echo "<table width='100%' cellspacing=1 cellpadding=0 align='center'>\n";
             echo "<tr align=center>\n<td align=center>\n";
@@ -127,6 +144,9 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
 			}
 			echo "</select>\n</td>\n";
 			echo "</tr>\n<tr>\n";
+			echo "<td width='42%' align='right'>\n".$locale['csp_164']."</td>\n";
+			echo "<td>\n<input type='text' name='sorder' value='".$sorder."' class='textbox' style='width:45px;' /></td>\n";
+			echo "</tr>\n<tr>\n";
 			echo "<td colspan='2' align='center'>\n<input type='submit' name='save' value='".$locale['csp_155']."' class='button'></td>\n";
 			echo "</tr>\n</table>\n</form>\n";
 			closeside();
@@ -136,28 +156,43 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
     
     openside($locale['csp_113']);
 	       echo $nav;
-		   $j = 1;
-	$result2 = dbquery("SELECT * FROM ".DB_SERVER." ORDER BY `id` ASC  LIMIT ".$_GET['rowstart'].",".$page);		
+		   
+	$result2 = dbquery("SELECT * FROM ".DB_SERVER." ORDER BY `sorder` ASC  LIMIT ".$_GET['rowstart'].",".$page);		
 	        echo "<table width='400' border='0' cellspacing='1' cellpadding='0' align='center'>\n<tr>\n";
 	        echo "<tr>\n";
             echo "<td align='center' bgcolor='#FFFFFF'>\n#</td>\n";
-			echo "<td align='center' bgcolor='#FFFFFF'>\n".$locale['csp_101']."</td>\n";
-            echo "<td bgcolor='#FFFFFF' align='center'>\n".$locale['csp_103']."</td>\n";
+            echo "<td bgcolor='#FFFFFF' align='center'>\n".$locale['csp_101']."</td>\n";
+			echo "<td bgcolor='#FFFFFF' align='center'>\n".$locale['csp_103']."</td>\n";
             echo "<td bgcolor='#FFFFFF' align='center'>\n".$locale['csp_104']."</td>\n";
+			echo "<td bgcolor='#FFFFFF' align='center'>\n".$locale['csp_164']."</td>\n";
 		    echo "<td align='center' bgcolor='#FFFFFF'>\n<strong>".$locale['csp_151']."</strong></td>\n";
 		    echo "</tr>\n";
 			echo "<form name='form1' method='post' action=''>\n";
+			$i = 1;$j = 1;
     while($data2 = dbarray($result2)){
-		
+		    $up = $data2['sorder'] - 1;	$down = $data2['sorder'] + 1;
             echo "<tr>\n";
             echo "<td align='center' bgcolor='#FFFFFF'>\n<input type='checkbox' name='checkbox[]' id='checkbox[]' value=".$data2['id'].">\n</td>\n";
-            echo "<td bgcolor='#FFFFFF' align='center'>\n".($j++)."</td>\n";
+            echo "<td bgcolor='#FFFFFF' align='center'>\n".$j."</td>\n";
             echo "<td bgcolor='#FFFFFF' align='center'>\n".$data2['ip']."</td>\n";
-			echo "<td align='center' bgcolor='#FFFFFF'>\n".$data2['port']."</td>\n";			  
+			echo "<td bgcolor='#FFFFFF' align='center'>\n".$data2['port']."</td>\n";
+			echo "<td bgcolor='#FFFFFF' align='center'>\n".$data2['sorder'];
+			if ($i == 1) {
+					echo "<a href='".FUSION_SELF.$aidlink."&amp;action=md&amp;sorder=$down&amp;id=".$data2['id']."'><img src='".get_image("down")."' alt='".$locale['csp_166']."' title='".$locale['csp_168']."' style='border:0px;' /></a>\n";
+				} elseif ($i < dbrows($result2)) {
+					echo "<a href='".FUSION_SELF.$aidlink."&amp;action=mu&amp;sorder=$up&amp;id=".$data2['id']."'><img src='".get_image("up")."' alt='".$locale['csp_165']."' title='".$locale['csp_167']."' style='border:0px;' /></a>\n";
+					echo "<a href='".FUSION_SELF.$aidlink."&amp;action=md&amp;sorder=$down&amp;id=".$data2['id']."'><img src='".get_image("down")."' alt='".$locale['csp_166']."' title='".$locale['csp_168']."' style='border:0px;' /></a>\n";
+				} else {
+					echo "<a href='".FUSION_SELF.$aidlink."&amp;action=mu&amp;sorder=$up&amp;id=".$data2['id']."'><img src='".get_image("up")."' alt='".$locale['csp_165']."' title='".$locale['csp_167']."' style='border:0px;' /></a>\n";
+				}
+		    		
+            echo "</td>\n";
+		    
 		    echo "<td align='center' bgcolor='#FFFFFF'>\n<strong><a href='".FUSION_SELF.$aidlink."&amp;action=edit&amp;id=".$data2['id']."'>".$locale['csp_151']."</a> -\n";
 		    echo "<a href='".FUSION_SELF.$aidlink."&amp;action=delete&amp;id=".$data2['id']."' onclick=\"return confirm('".$locale['csp_154']."');\">".$locale['csp_152']."</a></td>\n";
 		    echo "</strong></td>\n";
 		    echo "</tr>\n";
+            $i++;$j++;
     }
             echo "<tr>\n";
 			
@@ -171,11 +206,11 @@ closeside();
     if (isset($_POST['del'])){
         for($i=0;$i<$num;$i++){
             $del_id = isset($_POST['checkbox'][$i]) ? $_POST['checkbox'][$i] : "";
-			
+			//echo $del_id; 
 			$result = dbquery("DELETE FROM ".DB_SERVER." WHERE id='".$del_id."'");
-        //
+        
         }
-	        redirect(FUSION_SELF.$aidlink."&status=delf");
+	        redirect(FUSION_SELF.$aidlink);
 	}  
 closeside();
 } else {
@@ -189,7 +224,7 @@ closeside();
 		if (isset($_POST['show_players']) && ($_POST['show_players'] == 1 || $_POST['show_players'] == 0)) {
 			$setting = set_setting("show_players", $_POST['show_players'], "cs_panel");
 		}
-            redirect(FUSION_SELF.$aidlink."&status=sn");
+		redirect(FUSION_SELF.$aidlink."&status=sn");
 	}	
 	$inf_settings = get_settings("cs_panel");
 	openside($locale['csp_109']);
