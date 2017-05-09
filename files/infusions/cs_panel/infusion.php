@@ -18,6 +18,7 @@
 if (!defined("IN_FUSION")) { die("Access Denied"); }
 
 include INFUSIONS."cs_panel/infusion_db.php";
+include_once INFUSIONS."cs_panel/includes/postinstall.php";
 
 // Check if locale file is available matching the current site locale setting.
 if (file_exists(INFUSIONS."cs_panel/locale/".$settings['locale'].".php")) {
@@ -52,12 +53,10 @@ PRIMARY KEY (ip),
 UNIQUE id (id)
 )ENGINE=MyISAM;";
 
-//$inf_insertdbrow[1] = DB_SERVER."(id, ip, port, player, cod, modul, type, order) VALUES(`NULL`, `ip`, `port`, `player`, `cod`, `modul`, `type`, `order`) ";
-$inf_insertdbrow[2] = DB_PANELS." (panel_name, panel_filename, panel_content, panel_side, panel_order, panel_type, panel_access, panel_display, panel_status) VALUES('".$locale['csp_title']."', 'cs_panel', '', '2', '3', 'file', '0', '0', '0')";
 
-$inf_insertdbrow[3] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('servers_per_page', '10', '".$inf_folder."')";
-$inf_insertdbrow[4] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('servers_in_panel', '10', '".$inf_folder."')";
-$inf_insertdbrow[5] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('show_players', '1', '".$inf_folder."')";
+$inf_insertdbrow[1] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('servers_per_page', '10', '".$inf_folder."')";
+$inf_insertdbrow[2] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('servers_in_panel', '10', '".$inf_folder."')";
+$inf_insertdbrow[3] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('show_players', '1', '".$inf_folder."')";
 
 $inf_droptable[1] = DB_SERVER;
 
