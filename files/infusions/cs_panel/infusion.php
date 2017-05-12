@@ -54,8 +54,8 @@ UNIQUE id (id)
 )ENGINE=MyISAM;";
 
 
-$inf_insertdbrow[1] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('servers_per_page', '5', '".$inf_folder."')";
-$inf_insertdbrow[2] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('servers_in_panel', '10', '".$inf_folder."')";
+$inf_insertdbrow[1] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('servers_in_panel', '5', '".$inf_folder."')";
+$inf_insertdbrow[2] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('servers_per_page', '10', '".$inf_folder."')";
 $inf_insertdbrow[3] = DB_SETTINGS_INF."(settings_name, settings_value, settings_inf) VALUES ('show_players', '1', '".$inf_folder."')";
 
 $inf_droptable[1] = DB_SERVER;

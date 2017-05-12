@@ -33,6 +33,8 @@ if (isset($_GET['status']) && !isset($message)) {
 		$message = $locale['csp_161'];
 	} elseif ($_GET['status'] == "del") {
 		$message = $locale['csp_162'];
+	} elseif ($_GET['status'] == "sn") {
+		$message = $locale['csp_160'];
 	}
 	if ($message) {	echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; }
 }
@@ -47,30 +49,26 @@ $nav .= "</tr>\n</table>\n";
 $page=10;
 $num = dbcount("(id)", DB_SERVER);
 if (!isset($_GET['page']) || $_GET['page'] != "settings") {
-	
-//        echo "Test";
 
-
-
-if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id']) && isnum($_GET['id']))) {
+    if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id']) && isnum($_GET['id']))) {
                 
             $result = dbquery("DELETE FROM ".DB_SERVER." WHERE id='".$_GET['id']."'");
 			redirect(FUSION_SELF.$aidlink."&status=del");
         
 		
-} elseif ((isset($_GET['action']) && $_GET['action'] == "mu") && (isset($_GET['id']) && isnum($_GET['id'])) && (isset($_GET['sorder']) && isnum($_GET['sorder']))) {
+    } elseif ((isset($_GET['action']) && $_GET['action'] == "mu") && (isset($_GET['id']) && isnum($_GET['id'])) && (isset($_GET['sorder']) && isnum($_GET['sorder']))) {
         $data = dbarray(dbquery("SELECT id FROM ".DB_SERVER." WHERE sorder='".$_GET['sorder']."'"));
 		    $result = dbquery("UPDATE ".DB_SERVER." SET sorder=sorder+1 WHERE id='".$data['id']."'");
 		    $result = dbquery("UPDATE ".DB_SERVER." SET sorder=sorder-1 WHERE id='".$_GET['id']."'");
 			redirect(FUSION_SELF.$aidlink);
 
-} elseif ((isset($_GET['action']) && $_GET['action'] == "md") && (isset($_GET['id']) && isnum($_GET['id'])) && (isset($_GET['sorder']) && isnum($_GET['sorder']))) {
+    } elseif ((isset($_GET['action']) && $_GET['action'] == "md") && (isset($_GET['id']) && isnum($_GET['id'])) && (isset($_GET['sorder']) && isnum($_GET['sorder']))) {
 		    $data = dbarray(dbquery("SELECT id FROM ".DB_SERVER." WHERE sorder='".$_GET['sorder']."'"));
 		    $result = dbquery("UPDATE ".DB_SERVER." SET sorder=sorder-1 WHERE id='".$data['id']."'");
 		    $result = dbquery("UPDATE ".DB_SERVER." SET sorder=sorder+1 WHERE id='".$_GET['id']."'");
 		    redirect(FUSION_SELF.$aidlink);
 
-} else {
+    } else {
      
         if (isset($_POST['save'])) {
         	$ip = stripinput(trim($_POST['ip']));
@@ -80,79 +78,78 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
             $modul = isset($_POST['modul']) && isNum($_POST['modul']) ? $_POST['modul'] : "0";
 			$type = isset($_POST['type']) && isNum($_POST['type']) ? $_POST['type'] : "0";
 			$sorder = isset($_POST['sorder']) && isNum($_POST['sorder']) ? $_POST['sorder'] : "";
-    		$result = dbquery("UPDATE ".DB_SERVER." SET ip='$ip', port='$port', player='$player', cod='$cod', modul='$modul', type='$type', type='$sorder' WHERE id='".$_GET['id']."'");
+    		$result = dbquery("UPDATE ".DB_SERVER." SET ip='$ip', port='$port', player='$player', cod='$cod', modul='$modul', type='$type', sorder='$sorder' WHERE id='".$_GET['id']."'");
 			redirect(FUSION_SELF.$aidlink."&status=su");
 		}	
 		
-    if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['id']) && isnum($_GET['id']))) {
-		$result = dbquery("SELECT * FROM ".DB_SERVER." WHERE id='".$_GET['id']."'");
-		if (dbrows($result)) {
-			$data = dbarray($result);
-		$ip = $data['ip'];	
-		$port = $data['port'];	
-		$player = $data['player'];
-		$cod = $data['cod'];
-		$modul = $data['modul'];
-		$type = $data['type'];
-		$sorder = $data['sorder'];
-		$formaction = FUSION_SELF.$aidlink."&amp;action=edit&amp;id=".$_GET['id'];
-		$open = $locale['csp_114'];
-		openside($open);
-		   // echo $nav;
-            echo "<div style='text-align:center'>".$locale['csp_115'] ."&nbsp;".$num."&nbsp;".$locale['csp_116']."</div>\n";
-            echo "<table width='100%' cellspacing=1 cellpadding=0 align='center'>\n";
-            echo "<tr align=center>\n<td align=center>\n";
+        if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['id']) && isnum($_GET['id']))) {
+		    $result = dbquery("SELECT * FROM ".DB_SERVER." WHERE id='".$_GET['id']."'");
+		    if (dbrows($result)) {
+			   $data = dbarray($result);
+		    $ip = $data['ip'];	
+		    $port = $data['port'];	
+		    $player = $data['player'];
+		    $cod = $data['cod'];
+		    $modul = $data['modul'];
+		    $type = $data['type'];
+		    $sorder = $data['sorder'];
+		    $formaction = FUSION_SELF.$aidlink."&amp;action=edit&amp;id=".$_GET['id'];
+		    openside($locale['csp_114']);
+		    
+                echo "<div style='text-align:center'>".$locale['csp_115'] ."&nbsp;".$num."&nbsp;".$locale['csp_116']."</div>\n";
+                echo "<table width='100%' cellspacing=1 cellpadding=0 align='center'>\n";
+                echo "<tr align=center>\n<td align=center>\n";
             
-            echo "<table width='600' border='0' align='center' cellpadding='2' cellspacing='0'>\n";
-            echo "<form name='addcat' method='post' action='$formaction'>\n";
+                echo "<table width='600' border='0' align='center' cellpadding='2' cellspacing='0'>\n";
+                echo "<form name='addcat' method='post' action='$formaction'>\n";
 
-            echo "<tr>\n<td width='42%' align='right'>\n".$locale['csp_103']."&nbsp;<span style='color:#ff0000'>*</span></td>\n";
-            echo "<td width='58%'>\n<input class=textbox name='ip' type='textbox' size='20' id='ip' value='".$ip."' required></td>\n";
-            echo "</tr>\n<tr>\n";
-            echo "<td width='42%' align='right'>\n".$locale['csp_104']."&nbsp;<span style='color:#ff0000'>*</span></td>\n";
-            echo "<td>\n<input class=textbox name='port' type='text' size='7' id='port' value='".$port."'></td>\n";
-            echo "</tr>\n<tr>\n";
-            echo "<td align='right'>\n".$locale['csp_105']."</td>\n";
-            echo "<td>\n<select class=textbox name='player' id='player' value='".$player."'>\n";
-            echo "<option value='$player'>".$play[$player]."</option>\n";
-			foreach($play as $key => $value){
-            echo '<option value="'.$key.'">'.$value.'</option>';
-			}
-			echo "</select>\n</td>\n";
-            echo "</tr>\n<tr>\n";
-            echo "<td align='right'>\n".$locale['csp_106']."</td>\n";
-            echo "<td>\n<select class=textbox name='cod' id='cod'  value='".$cod."'>\n";
-            echo "<option value='$cod'>".$code[$cod]."</option>\n";
-			foreach($code as $key => $value){
-            echo '<option value="'.$key.'">'.$value.'</option>';
-			}
-			echo "</select>\n</td>\n";
-            echo "</tr>\n<tr>\n";
-            echo "<td align='right'>\n".$locale['csp_107']."</td>\n";
-			echo "<td>\n<select class=textbox name='modul' id='modul' value='".$modul."'>\n";
-			echo "<option value='$modul'>".$mod[$modul]."</option>\n";
-			foreach($mod as $key => $value){
-            echo '<option value="'.$key.'">'.$value.'</option>';
-			}
-			echo "</select>\n</td>\n";
-			echo "</tr>\n<tr>\n";
-			echo "<td align='right'>\n".$locale['csp_108']."</td>\n";
-			echo "<td>\n<select class=textbox name='type' id='type' value='".$type."'>\n";
-			echo "<option value='$type'>".$typ[$type]."</option>\n";
-			foreach($typ as $key => $value){
-            echo '<option value="'.$key.'">'.$value.'</option>';
-			}
-			echo "</select>\n</td>\n";
-			echo "</tr>\n<tr>\n";
-			echo "<td width='42%' align='right'>\n".$locale['csp_164']."</td>\n";
-			echo "<td>\n<input type='text' name='sorder' value='".$sorder."' class='textbox' style='width:45px;' /></td>\n";
-			echo "</tr>\n<tr>\n";
-			echo "<td colspan='2' align='center'>\n<input type='submit' name='save' value='".$locale['csp_155']."' class='button'></td>\n";
-			echo "</tr>\n</table>\n</form>\n";
+                echo "<tr>\n<td width='42%' align='right'>\n".$locale['csp_103']."&nbsp;<span style='color:#ff0000'>*</span></td>\n";
+                echo "<td width='58%'>\n<input class=textbox name='ip' type='textbox' size='20' id='ip' value='".$ip."' required></td>\n";
+                echo "</tr>\n<tr>\n";
+                echo "<td width='42%' align='right'>\n".$locale['csp_104']."&nbsp;<span style='color:#ff0000'>*</span></td>\n";
+                echo "<td>\n<input class=textbox name='port' type='text' size='7' id='port' value='".$port."'></td>\n";
+                echo "</tr>\n<tr>\n";
+                echo "<td align='right'>\n".$locale['csp_105']."</td>\n";
+                echo "<td>\n<select class=textbox name='player' id='player' value='".$player."'>\n";
+                echo "<option value='$player'>".$play[$player]."</option>\n";
+			  foreach($play as $key => $value){
+                echo '<option value="'.$key.'">'.$value.'</option>';
+			  }
+			    echo "</select>\n</td>\n";
+                echo "</tr>\n<tr>\n";
+                echo "<td align='right'>\n".$locale['csp_106']."</td>\n";
+                echo "<td>\n<select class=textbox name='cod' id='cod'  value='".$cod."'>\n";
+                echo "<option value='$cod'>".$code[$cod]."</option>\n";
+			  foreach($code as $key => $value){
+                echo '<option value="'.$key.'">'.$value.'</option>';
+			  }
+	    		echo "</select>\n</td>\n";
+                echo "</tr>\n<tr>\n";
+                echo "<td align='right'>\n".$locale['csp_107']."</td>\n";
+			    echo "<td>\n<select class=textbox name='modul' id='modul' value='".$modul."'>\n";
+			    echo "<option value='$modul'>".$mod[$modul]."</option>\n";
+			  foreach($mod as $key => $value){
+                echo '<option value="'.$key.'">'.$value.'</option>';
+			  }
+			    echo "</select>\n</td>\n";
+			    echo "</tr>\n<tr>\n";
+			    echo "<td align='right'>\n".$locale['csp_108']."</td>\n";
+			    echo "<td>\n<select class=textbox name='type' id='type' value='".$type."'>\n";
+			    echo "<option value='$type'>".$typ[$type]."</option>\n";
+			  foreach($typ as $key => $value){
+                echo '<option value="'.$key.'">'.$value.'</option>';
+			  }
+		    	echo "</select>\n</td>\n";
+			    echo "</tr>\n<tr>\n";
+			    echo "<td width='42%' align='right'>\n".$locale['csp_164']."</td>\n";
+		     	echo "<td>\n<input type='text' name='sorder' value='".$sorder."' class='textbox' style='width:45px;' /></td>\n";
+		    	echo "</tr>\n<tr>\n";
+		    	echo "<td colspan='2' align='center'>\n<input type='submit' name='save' value='".$locale['csp_155']."' class='button'></td>\n";
+			    echo "</tr>\n</table>\n</form>\n";
 			closeside();
 			
-		}	
-    }
+		    }	
+        }
     
     openside($locale['csp_113']);
 	       echo $nav;
@@ -199,14 +196,13 @@ if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['id'
 		    echo "<td colspan='5' align='center' bgcolor='#FFFFFF'>\n<input name='del' type='submit' id='del' value='".$locale['csp_153']."'>\n</td>\n";
             echo "</form>\n</tr>\n</table>\n";
         	closeside();
-// Check if delete button active, start this
-        echo "<div align='center' style='margin-top:5px;'>\n".(($num > $page) ? makePageNav($_GET['rowstart'], $page, $num, 3, FUSION_SELF."?") : "")."\n</div>\n";
-closeside();
-}		
+
+            echo "<div align='center' style='margin-top:5px;'>\n".(($num > $page) ? makePageNav($_GET['rowstart'], $page, $num, 3, FUSION_SELF."?") : "")."\n</div>\n";
+    closeside();
+    }		
     if (isset($_POST['del'])){
         for($i=0;$i<$num;$i++){
             $del_id = isset($_POST['checkbox'][$i]) ? $_POST['checkbox'][$i] : "";
-			//echo $del_id; 
 			$result = dbquery("DELETE FROM ".DB_SERVER." WHERE id='".$del_id."'");
         
         }

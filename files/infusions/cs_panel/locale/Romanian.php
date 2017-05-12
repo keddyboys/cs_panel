@@ -51,7 +51,7 @@ $locale['csp_138'] = "Dedicat";
 $locale['csp_139'] = "Privat";
 $locale['csp_140'] = "Server picat";
 //settings
-$locale['csp_145'] = "Servere &#226;n panou";
+$locale['csp_145'] = "Servere &#238;n panou";
 $locale['csp_146'] = "Servere pe pagin&#259;";
 $locale['csp_147'] = "Arat&#259; juc&#259;tori";
 //cs_panel_admin.php
@@ -61,7 +61,7 @@ $locale['csp_152'] = "&#350;terge";
 $locale['csp_153'] = "&#350;terg serverele selectate";
 $locale['csp_154'] = "E&#351;ti sigur?";
 $locale['csp_155'] = "Salveaz&#259;";
-$locale['csp_156'] = "Re&#226;mprosp&#259;teaz&#259;";
+$locale['csp_156'] = "Re&#238;mprosp&#259;teaz&#259;";
 $locale['csp_157'] = "&#206;nchide";
 $locale['csp_158'] = "Nu exist&#259; servere cu id-ul acesta";
 $locale['csp_159'] = "Conecteaz&#259;-te";
