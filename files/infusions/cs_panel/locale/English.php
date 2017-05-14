@@ -4,7 +4,7 @@ $locale['csp_title'] = "Counter-Strike panel";
 $locale['csp_desc'] = "Verify Counter-Strike servers";
 $locale['csp_admin1'] = "Counter-Strike panel";
 $locale['csp_link1'] = "Add server";
-$locale['csp_100'] = "Counter-Strike panel";
+$locale['csp_100'] = "Counter-Strike";
 $locale['csp_101'] = "No";
 $locale['csp_102'] = "Stats";
 $locale['csp_103'] = "Adress";
@@ -85,6 +85,7 @@ $play = array(20=>"20",10=>"10",12=>"12",14=>"14",16=>"16",18=>"18",22=>"22",24=
 $code = array(1 => "Not Secure", 2 => "VAC Secure", 3 => "VAC Secure2", 4 => "HLGuard", 5 => "Cheating-Death", 6 => "Other" );
 $mod = array(1 => "Normal", 2 => "Respawn", 3 => "WAR3FT", 4 => "Heroes", 5 => "Other" );
 $typ = array(1 => "CS 1.6", 2 => "CS Source", 3 => "CS 1.5", 4 => "CS Condition Zero", 5 => "CS Global Offensive" );
+$typo = array(1 => "cs16", 2 => "css", 3 => "cs15", 4 => "cscz", 5 => "csgo" );
 $type = array("cs16" => "CS 1.6", "css" => "CS Source", "cs15" => "CS 1.5", "cscz" => "CS Condition Zero", "csgo" => "CS Global Offensive");
 
 

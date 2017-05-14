@@ -39,7 +39,7 @@ require_once INFUSIONS."cs_panel/includes/GameQ/Autoloader.php";
  
 $cs_settings = get_settings("cs_panel");
 
-error_reporting(~E_ALL); 
+//error_reporting(~E_ALL); 
 $id = isset($_GET['id']) && isNum($_GET['id']) ? $_GET['id'] : "0";
 $data = dbarray(dbquery("SELECT ip, port, type FROM ".DB_SERVER."  WHERE id=".$id));
 if ($data !=0) {

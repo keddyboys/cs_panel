@@ -30,12 +30,12 @@ if (!iMEMBER) redirect(BASEDIR."index.php");
 if (isset($_GET['status']) && !isset($message)) {
 	if ($_GET['status'] == "sn") {
 		openside($locale['csp_118']);
-		$message .= $locale['csp_163'];
+		$message = $locale['csp_163'];
 		$message .= "<center>".$locale['csp_119a']."</center>";
 		$message .= "<center><a href='".FUSION_SELF."'>".$locale['csp_111']."</a>&nbsp;&nbsp;<a href='".BASEDIR."news.php'>".$locale['csp_112']."</a></center>";
 	} elseif ($_GET['status'] == "se") {
 		openside($locale['csp_118']);
-		$message .= "<b><center>".$locale['csp_119b']."</center></B>";
+		$message = "<b><center>".$locale['csp_119b']."</center></B>";
 		$message .= "<center><a href='".FUSION_SELF."'>".$locale['csp_111']."</a>&nbsp;&nbsp;<a href='".BASEDIR."news.php'>".$locale['csp_112']."</a></center>";
 	}
 	

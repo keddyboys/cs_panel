@@ -35,6 +35,8 @@ if (isset($_GET['status']) && !isset($message)) {
 		$message = $locale['csp_162'];
 	} elseif ($_GET['status'] == "sn") {
 		$message = $locale['csp_160'];
+	} elseif ($_GET['status'] == "delf") {
+		$message = $locale['csp_162b'];
 	}
 	if ($message) {	echo "<div id='close-message'><div class='admin-message'>".$message."</div></div>\n"; }
 }
@@ -206,7 +208,7 @@ if (!isset($_GET['page']) || $_GET['page'] != "settings") {
 			$result = dbquery("DELETE FROM ".DB_SERVER." WHERE id='".$del_id."'");
         
         }
-	        redirect(FUSION_SELF.$aidlink);
+	        redirect(FUSION_SELF.$aidlink."&status=delf");
 	}  
 closeside();
 } else {

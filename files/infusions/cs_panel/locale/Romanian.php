@@ -4,7 +4,7 @@ $locale['csp_title'] = "Panou Counter-Strike";
 $locale['csp_desc'] = "Verific&#259; servere de Counter-Strike";
 $locale['csp_admin1'] = "Panou Counter-Strike";
 $locale['csp_link1'] = "Adaug&#259; server";
-$locale['csp_100'] = "Panou Counter-Strike";
+$locale['csp_100'] = "Counter-Strike";
 $locale['csp_101'] = "Nr.";
 $locale['csp_102'] = "Status";
 $locale['csp_103'] = "Adresa";
@@ -68,6 +68,7 @@ $locale['csp_159'] = "Conecteaz&#259;-te";
 $locale['csp_160'] = "Set&#259;ri actualizate";
 $locale['csp_161'] = "Server actualizat";
 $locale['csp_162'] = "Server &#351;ters";
+$locale['csp_162b'] = "Serverele au fost &#351;terse";
 $locale['csp_163'] = "Server ad&#259;ugat";
 
 $locale['csp_164'] = "Ordine";
