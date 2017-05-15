@@ -78,40 +78,37 @@ if (isset($_POST['submit']) && !isset($message)) {
             echo "<td>\n<input class=textbox name='port' type='text' size='7' id='port' value='27015'></td>\n";
             echo "</tr>\n<tr>\n";
             echo "<td align='right'>\n".$locale['csp_105']."</td>\n";
-            echo "<td>\n<select class=textbox name='player' id='player'>\n";
-            echo "<option value=''>-----------------</option>\n";
+            echo "<td >\n<select class=textbox name='player' id='player'>\n";
+            echo "<option value=''>".$locale['csp_169']."</option>\n";
            foreach($play as $key => $value){
             echo '<option value="'.$key.'">'.$value.'</option>';
 			}
             echo "</select>\n</td>\n";
             echo "</tr>\n<tr>\n";
             echo "<td align='right'>\n".$locale['csp_106']."</td>\n";
-			echo "<td>\n<select class=textbox name='cod' id='cod'>\n";
-            echo "<option value=''>-----------------</option>\n";
+			echo "<td >\n<select class=textbox name='cod' id='cod'>\n";
+            echo "<option value=''>".$locale['csp_169']."</option>\n";
 			foreach($code as $key => $value){
             echo '<option value="'.$key.'">'.$value.'</option>';
 			}
 			echo "</select>\n</td>\n";
             echo "</tr>\n<tr>\n";
             echo "<td align='right'>\n".$locale['csp_107']."</td>\n";
-			echo "<td>\n<select class=textbox name='modul' id='modul'>\n";
-			echo "<option value=''>-----------------</option>\n";
+			echo "<td >\n<select class=textbox name='modul' id='modul'>\n";
+			echo "<option value=''>".$locale['csp_169']."</option>\n";
 			foreach($mod as $key => $value){
             echo '<option value="'.$key.'">'.$value.'</option>';
 			}
 			echo "</select>\n</td>\n";
 			echo "</tr>\n<tr>\n";
             echo "<td align='right'>\n".$locale['csp_108']."</td>\n";
-			echo "<td>\n<select class=textbox name='type' id='type'>\n";
-			echo "<option value=''>-----------------</option>\n";
+			echo "<td >\n<select class=textbox name='type' id='type'>\n";
+			echo "<option value=''>".$locale['csp_169']."</option>\n";
 			foreach($typ as $key => $value){
             echo '<option value="'.$key.'">'.$value.'</option>';
 			}
 			echo "</select>\n</td>\n";
 			echo "</tr>\n<tr>\n";
-			echo "<td width='42%' align='right'>\n".$locale['csp_164']."</td>\n";
-            echo "<td>\n<input class=textbox name='sorder' type='text' size='7' id='sorder'></td>\n";
-            echo "</tr>\n<tr>\n";
 			echo "<td colspan='2' align='center'>\n<input type='submit' name='submit' value='".$locale['csp_118']."' class='button'></td>\n";
 			echo "</tr>\n</table>\n</form>\n";
 			echo "</td>\n</tr>\n</table>\n";

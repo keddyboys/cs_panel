@@ -73,7 +73,7 @@ $locale['csp_165'] = "Up";
 $locale['csp_166'] = "Down";
 $locale['csp_167'] = "Move down";
 $locale['csp_168'] = "Move up";
-
+$locale['csp_169'] = "Chose";
 $locale['csp_timeUnits'] = array(
     'days' => 'd',
     'hours' => 'h',

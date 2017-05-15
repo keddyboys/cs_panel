@@ -70,12 +70,12 @@ $locale['csp_161'] = "Server actualizat";
 $locale['csp_162'] = "Server &#351;ters";
 $locale['csp_162b'] = "Serverele au fost &#351;terse";
 $locale['csp_163'] = "Server ad&#259;ugat";
-
 $locale['csp_164'] = "Ordine";
 $locale['csp_165'] = "Sus";
 $locale['csp_166'] = "Jos";
 $locale['csp_167'] = "Mut&#259; sus";
 $locale['csp_168'] = "Mut&#259; jos";
+$locale['csp_169'] = "Alege";
 
 $locale['csp_timeUnits'] = array(
     'days' => 'z',
